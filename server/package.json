@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Pollution tracker to report Pollution incidents in nearby locations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Pollution",
+    "Water Pollution",
+    "Plastic Pollution",
+    "Air Pollution",
+    "Climate Change",
+    "Pollution"
+  ],
+  "author": "Michle99",
+  "license": "MIT"
+}
