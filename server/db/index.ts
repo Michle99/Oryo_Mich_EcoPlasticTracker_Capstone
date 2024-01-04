@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
+import '../load_envs'
 
 const mongodb = process.env.MONGO_URI || "";
+
+console.log("Connection string:", mongodb);
 
 
 const connectDB = async (): Promise<void> => {
