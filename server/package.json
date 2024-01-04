@@ -15,5 +15,8 @@
     "Pollution"
   ],
   "author": "Michle99",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^8.0.3"
+  }
 }
