@@ -91,6 +91,66 @@ Collections for Users and PollutionReports.
 - **JWT (JSON Web Tokens):**
   - Generates and verifies authentication tokens.
 
+## Steps/Tasks:
+
+1. ### Set Up Project Structure:
+- Create separate directories for frontend and backend.
+- Initialize React app for the frontend (`create-react-app`).
+- Initialize Node.js app for the backend (`npm init`).
+
+2. ### Frontend Implementation:
+- Implement React components for Header, Map, ReportForm, and ReportsList.
+- Set up Redux for state management.
+- Integrate Axios for API communication.
+- Implement React Router for navigation.
+
+3. ### Backend Implementation:
+- Set up Express.js server.
+- Implement routes for user authentication and pollution reports.
+- Create controllers for authentication and pollution reports.
+- Implement middleware for authentication.
+- Connect to MongoDB and define database schemas.
+
+4. ### Database Setup:
+- Set up a MongoDB database.
+- Create collections for Users and PollutionReports.
+
+5. ### User Authentication:
+
+- Implement user registration and login functionality using bcrypt and JWT.
+
+6. ### Pollution Report Submission:
+
+- Create an API endpoint to handle pollution report submissions.
+- Save submitted reports to the MongoDB database.
+
+
+7. ### Pollution Report Retrieval:
+
+- Create an API endpoint to retrieve all pollution reports.
+- Implement logic to fetch reports from the database.
+
+8. ### Map Integration:
+
+- Integrate a map library (e.g., Leaflet or Mapbox) into the React app.
+- Display reported pollution incidents on the map.
+
+
+9. ### Styling:
+
+- Style React components using CSS Modules.
+
+10. ### Testing:
+
+- Test the application thoroughly, including frontend and backend functionalities.
+
+11. ### Deployment:
+
+- Deploy the frontend (React) and backend (Node.js and MongoDB) to a hosting platform (e.g., Heroku, AWS).
 
 ## Requirements
- 
+
+- Fundamental Understanding of Express, MongoDB, and Node.js
+- Fundamental Understanding of React, Redux and React Hooks.
+
+## 
