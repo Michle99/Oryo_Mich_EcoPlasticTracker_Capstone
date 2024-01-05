@@ -1,5 +1,7 @@
 import express, { Application } from 'express';
 import connectDB from './db';
+import authRoutes from "./routes/auth.routes"
+
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -8,6 +10,9 @@ app.use(express.json());
 
 // MongoDB Connection
 connectDB();
+
+// Auth Routes
+app.use('/api/auth', authRoutes);
 
 // Routes
 app.get('/', (req, res) => {
