@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import mongoose from 'mongoose';
 import connectDB from './db';
 
 const app: Application = express();
