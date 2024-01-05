@@ -3,7 +3,9 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserModel, { IUser } from '../models/user.model';
+import "../load_envs";
 
+const JWT_SECRET = process.env.JWT_SECRET_TOKEN || 'default_secret_key';
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -54,7 +56,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, 'secret', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
     console.log("Show token:", token)
     res.status(200).json({ token });
   } catch (error) {
