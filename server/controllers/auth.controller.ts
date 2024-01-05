@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserModel, { IUser } from '../models/user.model';
 
+
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { username, email, password } = req.body;
@@ -53,8 +54,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
-
+    const token = jwt.sign({ userId: user._id }, 'secret', { expiresIn: '1h' });
+    console.log("Show token:", token)
     res.status(200).json({ token });
   } catch (error) {
     console.error('Error logging in user:', error);
