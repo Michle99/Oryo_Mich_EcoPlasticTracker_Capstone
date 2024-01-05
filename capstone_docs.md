@@ -148,9 +148,3 @@ Collections for Users and PollutionReports.
 
 - Deploy the frontend (React) and backend (Node.js and MongoDB) to a hosting platform (e.g., Heroku, AWS).
 
-## Requirements
-
-- Fundamental Understanding of Express, MongoDB, and Node.js
-- Fundamental Understanding of React, Redux and React Hooks.
-
-## 
