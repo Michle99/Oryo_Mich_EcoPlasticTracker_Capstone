@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import connectDB from './db';
 import authRoutes from "./routes/auth.routes"
+import pollutionReportRoutes from './routes/pollution-report.routes';
 
 
 const app: Application = express();
@@ -13,6 +14,10 @@ connectDB();
 
 // Auth Routes
 app.use('/api/auth', authRoutes);
+
+// Pollution Report Routes
+app.use('/api/reports', pollutionReportRoutes);
+
 
 // Routes
 app.get('/', (req, res) => {
