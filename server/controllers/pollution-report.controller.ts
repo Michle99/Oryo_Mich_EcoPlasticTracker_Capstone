@@ -61,6 +61,13 @@ export const deletePollutionReport = async (req: Request, res: Response): Promis
   try {
     const reportId = req.params.id;
 
+    // Check if the pollution report with the specified ID exists
+    const existingReport = await PollutionReportModel.findById(reportId);
+    if (!existingReport) {
+      res.status(404).json({ error: 'Pollution report not found' });
+      return;
+    }
+
     // Find the pollution report by ID and remove it
     const deletedReport = await PollutionReportModel.findByIdAndDelete(reportId);
 
