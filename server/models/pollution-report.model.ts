@@ -5,6 +5,8 @@ export interface IPollutionReport extends Document {
     type: string;
     coordinates: [number, number];
   };
+  title: string;
+  description: string;
   type: string;
   images: string[]; // Array of image URLs
 }
@@ -20,6 +22,14 @@ const pollutionReportSchema: Schema<IPollutionReport> = new Schema({
       type: [Number],
       required: true,
     },
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
   },
   type: {
     type: String,
