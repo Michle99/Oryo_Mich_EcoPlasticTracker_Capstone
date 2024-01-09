@@ -1,6 +1,7 @@
-
-import './App.css'
+// import './App.css'
 import ReportForm from './components/ReportForm'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 const App: React.FC = () => {
   const handleReportSubmission = () => {
@@ -8,10 +9,15 @@ const App: React.FC = () => {
   }  
 
   return (
-    <div>
-      <h1>Welcome to EcoPlasticTracker Web Application</h1>
-      <ReportForm onSubmitSuccess={handleReportSubmission} />
-    </div>
+    <Router>
+      <div>
+        <h1>Welcome to EcoPlasticTracker Web Application</h1>
+        <Routes>
+          <Route path='/'  element={<ReportForm onSubmitSuccess={handleReportSubmission} />}/>
+            
+        </Routes>
+     </div>
+    </Router>
   )
 }
 

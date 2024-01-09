@@ -95,12 +95,12 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
       </ul>
       <label>
         Location:
-        <LocationPicker
+        {/* <LocationPicker
           containerElement={<div style={{ height: '400px' }} />}
           mapElement={<div style={{ height: '100%' }} />}
           defaultPosition={{ lat: location.lat, lng: location.lng }}
           onChange={handleLocationChange}
-        />
+        /> */}
       </label>
       <button type="submit">Submit Report</button>
     </form>
