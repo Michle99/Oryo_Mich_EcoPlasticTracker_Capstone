@@ -55,3 +55,23 @@ export const updatePollutionReport = async (req: Request, res: Response): Promis
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
+export const deletePollutionReport = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const reportId = req.params.id;
+
+    // Find the pollution report by ID and remove it
+    const deletedReport = await PollutionReportModel.findByIdAndDelete(reportId);
+
+    if (!deletedReport) {
+      res.status(404).json({ error: 'Pollution report not found' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Pollution report deleted successfully', report: deletedReport });
+  } catch (error) {
+    console.error('Error deleting pollution report:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
