@@ -35,3 +35,23 @@ export const getAllPollutionReports = async (req: Request, res: Response): Promi
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export const updatePollutionReport = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const reportId = req.params.id;
+    const updateData: IPollutionReport = req.body;
+
+    // Find the pollution report by ID and update it
+    const updatedReport = await PollutionReportModel.findByIdAndUpdate(reportId, updateData, { new: true });
+
+    if (!updatedReport) {
+      res.status(404).json({ error: 'Pollution report not found' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Pollution report updated successfully', report: updatedReport });
+  } catch (error) {
+    console.error('Error updating pollution report:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
