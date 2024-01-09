@@ -8,3 +8,31 @@ EcoPlasticTracker is a web application that allows users to report and track pla
 
 - Fundamental Understanding of Express, MongoDB, and Node.js
 - Fundamental Understanding of React, Redux and React Hooks.
+
+
+## Features
+
+
+
+
+## Technologies Used
+- Node.js
+- MongoDB
+- Express
+- TypeScript
+- Vite
+- React
+
+
+## Getting Started
+
+#### Pre-requisites
+
+- Node.js and npm/yarn is installed.
+
+### Installation
+
+
+
+## License
+
