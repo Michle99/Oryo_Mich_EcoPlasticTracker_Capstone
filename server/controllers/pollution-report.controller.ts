@@ -3,11 +3,13 @@ import PollutionReportModel, { IPollutionReport } from '../models/pollution-repo
 
 export const submitPollutionReport = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { location, type, images }: IPollutionReport = req.body;
+    const { location, title, description, type, images }: IPollutionReport = req.body;
 
     // Create a new pollution report
     const newReport: IPollutionReport = new PollutionReportModel({
       location,
+      title,
+      description,
       type,
       images,
     });
