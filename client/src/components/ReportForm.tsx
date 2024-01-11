@@ -1,5 +1,6 @@
+// src/components/ReportForm.tsx
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import LocationPicker from 'react-location-picker';
+import GoogleMapPicker from 'react-google-map-picker';
 
 interface ReportFormProps {
   onSubmitSuccess: () => void;
@@ -8,11 +9,21 @@ interface ReportFormProps {
 const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [type, setType] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [images, setImages] = useState<string[]>([]);
   const [imageInput, setImageInput] = useState<string>('');
 
   const handleTypeChange = (event: ChangeEvent<HTMLInputElement>) => {
     setType(event.target.value);
+  };
+
+  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value);
   };
 
   const handleImageInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +43,8 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
     setImages(updatedImages);
   };
 
-  const handleLocationChange = (newLocation: { lat: number; lng: number }) => {
-    setLocation(newLocation);
+  const handleLocationChange = (lat: number, lng: number) => {
+    setLocation({ lat, lng });
   };
 
   const handleSubmit = async (event: FormEvent) => {
@@ -41,7 +52,7 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
 
     try {
       // Retrieve the token from wherever it's stored in your application
-      const token = import.meta.env.VITE_JWT_SECRET_TOKEN;
+      const token = 'your_user_token'; // Replace with your actual token retrieval logic
 
       // Make a POST request to submit the pollution report using fetch
       const response = await fetch('http://localhost:3000/api/reports/submit', {
@@ -53,6 +64,8 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
         body: JSON.stringify({
           location,
           type,
+          title,
+          description,
           images,
         }),
       });
@@ -60,12 +73,14 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
       if (response.ok) {
         const responseData = await response.json();
         console.log('Pollution report submitted:', responseData);
-        onSubmitSuccess(); 
+        onSubmitSuccess(); // Optionally trigger a callback upon successful submission
       } else {
         console.error('Error submitting pollution report:', response.status);
+        // Handle errors, e.g., display an error message to the user
       }
     } catch (error) {
       console.error('Error submitting pollution report:', error);
+      // Handle errors, e.g., display an error message to the user
     }
   };
 
@@ -74,6 +89,16 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
       <label>
         Type:
         <input type="text" value={type} onChange={handleTypeChange} required />
+      </label>
+      <br />
+      <label>
+        Title:
+        <input type="text" value={title} onChange={handleTitleChange} required />
+      </label>
+      <br />
+      <label>
+        Description:
+        <input type="text" value={description} onChange={handleDescriptionChange} required />
       </label>
       <br />
       <label>
@@ -95,12 +120,11 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
       </ul>
       <label>
         Location:
-        {/* <LocationPicker
-          containerElement={<div style={{ height: '400px' }} />}
-          mapElement={<div style={{ height: '100%' }} />}
-          defaultPosition={{ lat: location.lat, lng: location.lng }}
-          onChange={handleLocationChange}
-        /> */}
+        <GoogleMapPicker
+          defaultLocation={{ lat: location.lat, lng: location.lng }}
+          onChangeLocation={handleLocationChange}
+          apiKey=''
+        />
       </label>
       <button type="submit">Submit Report</button>
     </form>
