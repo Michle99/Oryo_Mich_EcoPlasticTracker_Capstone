@@ -1,14 +1,18 @@
 // src/components/ReportForm.tsx
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import Geocode from 'react-geocode';
+import {
+  setKey,
+  fromAddress
+} from 'react-geocode';
 
 interface ReportFormProps {
   onSubmitSuccess: () => void;
 }
 
-const googleApiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
+const googleApiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY || "null";
+const secret = import.meta.env.VITE_JWT_SECRET_TOKEN;
 
-Geocode.setKey(googleApiKey); // Replace with your actual Google Maps API key
+setKey(googleApiKey);
 
 const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
@@ -54,9 +58,10 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
 
   const handleLocationChange = async () => {
     try {
-      const response = await Geocode.fromAddress(address);
+      const response = await fromAddress(address);
       const { lat, lng } = response.results[0].geometry.location;
       setLocation({ lat, lng });
+      console.log("lat:", lat+" "+ "long:", lng)
     } catch (error) {
       console.error('Error converting address to coordinates:', error);
     }
@@ -67,13 +72,15 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
 
     try {
       // Retrieve the token from wherever it's stored in your application
-      const token = 'your_user_token'; // Replace with your actual token retrieval logic
+      const token = secret;
 
       // Make a POST request to submit the pollution report using fetch
       const response = await fetch('http://localhost:3000/api/reports/submit', {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
@@ -88,14 +95,12 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
       if (response.ok) {
         const responseData = await response.json();
         console.log('Pollution report submitted:', responseData);
-        onSubmitSuccess(); // Optionally trigger a callback upon successful submission
+        onSubmitSuccess();
       } else {
         console.error('Error submitting pollution report:', response.status);
-        // Handle errors, e.g., display an error message to the user
       }
     } catch (error) {
       console.error('Error submitting pollution report:', error);
-      // Handle errors, e.g., display an error message to the user
     }
   };
 
