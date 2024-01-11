@@ -92,6 +92,8 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
         }),
       });
 
+      console.log("response from localhost api:", response);
+
       if (response.ok) {
         const responseData = await response.json();
         console.log('Pollution report submitted:', responseData);

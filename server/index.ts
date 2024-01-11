@@ -2,12 +2,13 @@ import express, { Application } from 'express';
 import connectDB from './db';
 import authRoutes from "./routes/auth.routes"
 import pollutionReportRoutes from './routes/pollution-report.routes';
-
+import cors from 'cors'
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors);
 
 // MongoDB Connection
 connectDB();
