@@ -6,6 +6,8 @@ interface ReportFormProps {
   onSubmitSuccess: () => void;
 }
 
+const googleApiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
+
 const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [type, setType] = useState<string>('');
@@ -123,7 +125,7 @@ const ReportForm: React.FC<ReportFormProps> = ({ onSubmitSuccess }) => {
         <GoogleMapPicker
           defaultLocation={{ lat: location.lat, lng: location.lng }}
           onChangeLocation={handleLocationChange}
-          apiKey=''
+          apiKey={googleApiKey}
         />
       </label>
       <button type="submit">Submit Report</button>
