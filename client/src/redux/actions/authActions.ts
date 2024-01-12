@@ -1,7 +1,7 @@
 // src/redux/actions/authActions.ts
 import { Dispatch } from 'redux';
 import axios from 'axios';
-import { AuthActionTypes, AuthAction } from './types';
+import { AuthActionTypes } from './types';
 
 export const signup = (userData: { email: string; username: string; password: string }) => {
   return async (dispatch: Dispatch<AuthActionTypes>) => {
