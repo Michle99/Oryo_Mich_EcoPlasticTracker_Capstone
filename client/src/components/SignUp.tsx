@@ -2,7 +2,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-// import { signup } from '../redux/actions/authActions';
+import { signup } from '../redux/actions/authActions';
 
 const Signup: React.FC = () => {
   const dispatch = useDispatch();
