@@ -1,20 +1,18 @@
 // import './App.css'
-import ReportForm from './components/ReportForm'
+import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 const App: React.FC = () => {
-  const handleReportSubmission = () => {
-    console.log("Report submitted successfully");
-  }  
+  // const handleReportSubmission = () => {
+  //   console.log("Report submitted successfully");
+  // }  
 
   return (
     <Router>
       <div>
-        <h1>Welcome to EcoPlasticTracker Web Application</h1>
         <Routes>
-          <Route path='/'  element={<ReportForm onSubmitSuccess={handleReportSubmission} />}/>
-            
+         <Route path='/' element={<Home/>}/>
         </Routes>
      </div>
     </Router>
