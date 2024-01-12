@@ -2,10 +2,11 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { signup } from '../redux/actions/authActions';
+import { ThunkDispatch } from 'redux-thunk';
+import { AuthActionTypes, signup } from '../redux/actions/authActions';
 
 const Signup: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<AuthActionTypes, void, RootState>>();
 
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');

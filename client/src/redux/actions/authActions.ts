@@ -9,7 +9,7 @@ interface UserData {
   password: string;
 }
 
-export const signup = (userData: UserData) => async (dispatch: Dispatch<AuthActionTypes>) => {
+export const signup = (userData: UserData) => async (dispatch: Dispatch<AuthActionTypes>): Promise<void> => {
   try {
     const response = await axios.post('http://localhost:3000/api/auth/signup', userData);
     dispatch({ type: SIGNUP_SUCCESS, payload: response.data });
@@ -18,7 +18,7 @@ export const signup = (userData: UserData) => async (dispatch: Dispatch<AuthActi
   }
 };
 
-export const login = (userData: UserData) => async (dispatch: Dispatch<AuthActionTypes>) => {
+export const login = (userData: UserData) => async (dispatch: Dispatch<AuthActionTypes>): Promise<void> => {
   try {
     const response = await axios.post('http://localhost:3000/api/auth/login', userData);
     dispatch({ type: LOGIN_SUCCESS, payload: response.data });
@@ -26,3 +26,5 @@ export const login = (userData: UserData) => async (dispatch: Dispatch<AuthActio
     console.error('Error logging in:', error);
   }
 };
+
+export type { AuthActionTypes };
