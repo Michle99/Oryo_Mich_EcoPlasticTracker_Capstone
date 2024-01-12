@@ -10,11 +10,9 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div>
         <Routes>
          <Route path='/' element={<Home/>}/>
         </Routes>
-     </div>
     </Router>
   )
 }
