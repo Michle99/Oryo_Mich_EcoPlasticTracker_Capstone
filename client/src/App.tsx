@@ -14,15 +14,9 @@ const App: React.FC = () => {
         {/* <Header /> */}
         <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
           <Routes>
-            <Route path="/" >
-              <Home />
-            </Route>
-            <Route path="/signup">
-              <Signup />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/login" element={<Login />}/> 
           </Routes>
         </Paper>
       </Container>
