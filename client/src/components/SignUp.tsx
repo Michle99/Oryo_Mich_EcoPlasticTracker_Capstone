@@ -3,9 +3,10 @@ import { Button, Container, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { signup } from '../redux/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../redux/store';
 
 const Signup: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
