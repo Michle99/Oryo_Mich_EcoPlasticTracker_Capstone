@@ -3,7 +3,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { AuthActionTypes, signup } from '../redux/actions/authActions';
+import { signup } from '../redux/authSlice';
 
 const Signup: React.FC = () => {
   const dispatch = useDispatch<ThunkDispatch<AuthActionTypes, void, RootState>>();
