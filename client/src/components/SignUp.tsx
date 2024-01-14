@@ -1,13 +1,12 @@
-// src/components/Signup.tsx
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Button, TextField, Typography } from '@mui/material';
+import React, { useState, ChangeEvent } from 'react';
+import { Button, Container, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { signup } from '../redux/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup: React.FC = () => {
-  const dispatch = useDispatch<ThunkDispatch<AuthActionTypes, void, RootState>>();
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -24,46 +23,37 @@ const Signup: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
-    dispatch(signup({ email, username, password }));
+  const handleSignup = async () => {
+    try {
+      dispatch(signup({ email, username, password }));
+      navigate('/login');
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Typography variant="h5" gutterBottom>
-        Sign Up
+    <Container>
+      <Typography variant="h4" gutterBottom>
+        Signup
       </Typography>
-      <TextField
-        label="Email"
-        variant="outlined"
-        fullWidth
-        value={email}
-        onChange={handleEmailChange}
-        required
-      />
-      <TextField
-        label="Username"
-        variant="outlined"
-        fullWidth
-        value={username}
-        onChange={handleUsernameChange}
-        required
-      />
+      <TextField label="Email" variant="outlined" fullWidth value={email} onChange={handleEmailChange} />
+      <TextField label="Username" variant="outlined" fullWidth value={username} onChange={handleUsernameChange} />
       <TextField
         label="Password"
-        type="password"
         variant="outlined"
+        type="password"
         fullWidth
         value={password}
         onChange={handlePasswordChange}
-        required
       />
-      <Button type="submit" variant="contained" color="primary" sx={{ marginTop: 2 }}>
-        Sign Up
+      <Button variant="contained" color="primary" onClick={handleSignup} sx={{ marginTop: 2 }}>
+        Signup
       </Button>
-    </form>
+      <Typography variant="body2" sx={{ marginTop: 2 }}>
+        Already have an account? <Link to="/login">Login here</Link>
+      </Typography>
+    </Container>
   );
 };
 
