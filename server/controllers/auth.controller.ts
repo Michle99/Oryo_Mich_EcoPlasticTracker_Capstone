@@ -39,10 +39,10 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    // Find the user by username
-    const user = await UserModel.findOne({ username });
+    // Find the user by email
+    const user = await UserModel.findOne({ email });
     if (!user) {
       res.status(401).json({ error: 'Invalid credentials' });
       return;
