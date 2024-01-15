@@ -16,25 +16,34 @@ const initialState: AuthState = {
 
 type User = {
   email: string;
-  username: string;
   password: string;
+}
+type NewUser = User &{
+  username: string;
 }
   
 export const signup = createAsyncThunk(
   'auth/signup', 
-  async (userData: User) => {
+  async (userData: NewUser) => {
   try {
     const response = await axios.post('http://localhost:3000/api/auth/signup', userData);
     return response.data.user;
   } catch (error) {
-    console.error('Error in signup async thunk:', error);
+    console.error('Error in registering user:', error);
     throw error;
   }
 });
   
-export const login = createAsyncThunk('auth/login', async (userData: { email: string; password: string }) => {
-    const response = await axios.post('http://localhost:3000/api/auth/login', userData);
-    return response.data.user;
+export const login = createAsyncThunk(
+  'auth/login', 
+  async (userData: User) => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/login', userData);
+      return response.data.user;
+    } catch (error) {
+      console.error('Error login in user:', error);
+      throw error;
+    }
 });
   
 const authSlice = createSlice({
