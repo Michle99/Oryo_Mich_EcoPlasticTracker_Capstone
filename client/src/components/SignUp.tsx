@@ -14,16 +14,21 @@ const Signup: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleSignup = async () => {
-    try {
-      console.log("Clicked signup");
-      await dispatch(signup({ email, username, password }));
-      navigate('/login');
-    } catch (error) {
-      setError('Error signing up. Please check your information and try again.');
-      console.error('Error signing up:', error);
+    if (email && username && password) {
+      try {
+        console.log("Clicked signup");
+        await dispatch(signup({ email, username, password }));
+        navigate('/login');
+      } catch (error) {
+        setError('Error signing up. Please check your information and try again.');
+        console.error('Error signing up:', error);
+      }
+    } else {
+      console.log("Sign Up Form didn't receive any data.");
     }
+    
   };
-  
+
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
