@@ -13,6 +13,17 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
+  const handleSignup = async () => {
+    try {
+      console.log("Clicked signup");
+      await dispatch(signup({ email, username, password }));
+      navigate('/login');
+    } catch (error) {
+      setError('Error signing up. Please check your information and try again.');
+      console.error('Error signing up:', error);
+    }
+  };
+  
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -25,24 +36,25 @@ const Signup: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const handleSignup = async () => {
-    try {
-      console.log("Clicked signup");
-      await dispatch(signup({ email, username, password }));
-      navigate('/login');
-    } catch (error) {
-      setError('Error signing up. Please check your information and try again.');
-      console.error('Error signing up:', error);
-    }
-  };
-
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
         Signup
       </Typography>
-      <TextField label="Email" variant="outlined" fullWidth value={email} onChange={handleEmailChange} />
-      <TextField label="Username" variant="outlined" fullWidth value={username} onChange={handleUsernameChange} />
+      <TextField 
+        label="Email" 
+        variant="outlined" 
+        fullWidth 
+        value={email} 
+        onChange={handleEmailChange} 
+      />
+      <TextField 
+        label="Username" 
+        variant="outlined" 
+        fullWidth 
+        value={username} 
+        onChange={handleUsernameChange} 
+      />
       <TextField
         label="Password"
         variant="outlined"
@@ -52,7 +64,12 @@ const Signup: React.FC = () => {
         onChange={handlePasswordChange}
       />
       {error && <Typography color="error">{error}</Typography>}
-      <Button variant="contained" color="primary" onClick={handleSignup} sx={{ marginTop: 2 }}>
+      <Button 
+        variant="contained" 
+        color="primary" 
+        onClick={handleSignup} 
+        sx={{ marginTop: 2 }}
+      >
         Signup
       </Button>
       <Typography variant="body2" sx={{ marginTop: 2 }}>
