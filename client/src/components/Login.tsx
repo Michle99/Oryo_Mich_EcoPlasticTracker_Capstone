@@ -13,12 +13,17 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    try {
-      await dispatch(login({ email, password }));
-      navigate('/');
-    } catch (error) {
-      console.error('Error logging in:', error);
+    if (email && password) {
+      try {
+        await dispatch(login({ email, password }));
+        navigate('/');
+      } catch (error) {
+        console.error('Error logging in:', error);
+      }
+    }else {
+      throw Error;
     }
+    
   };
 
   const handleEmailChange = (
