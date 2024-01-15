@@ -12,14 +12,6 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
   const handleLogin = async () => {
     try {
       await dispatch(login({ email, password }));
@@ -29,12 +21,30 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleEmailChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setPassword(event.target.value);
+  };
+
   return (
     <div>
       <Typography variant="h4" gutterBottom>
         Login
       </Typography>
-      <TextField label="Email" variant="outlined" fullWidth value={email} onChange={handleEmailChange} />
+      <TextField 
+        label="Email" 
+        variant="outlined" 
+        fullWidth 
+        value={email} 
+        onChange={handleEmailChange} 
+      />
       <TextField
         label="Password"
         variant="outlined"
@@ -43,11 +53,19 @@ const Login: React.FC = () => {
         value={password}
         onChange={handlePasswordChange}
       />
-      <Button variant="contained" color="primary" onClick={handleLogin} sx={{ marginTop: 2 }}>
+      <Button 
+        variant="contained" 
+        color="primary" 
+        onClick={handleLogin} 
+        sx={{ marginTop: 2 }}
+      >
         Login
       </Button>
       <Typography variant="body2" sx={{ marginTop: 2 }}>
-        Don't have an account? <Link to="/signup">Signup here</Link>
+        Don't have an account? 
+        <Link to="/signup">
+          Signup here
+        </Link>
       </Typography>
     </div>
   );
