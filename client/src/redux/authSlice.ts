@@ -13,8 +13,16 @@ const initialState: AuthState = {
     status: 'idle',
     error: null,
 };
+
+type User = {
+  email: string;
+  username: string;
+  password: string;
+}
   
-export const signup = createAsyncThunk('auth/signup', async (userData: { email: string; username: string; password: string }) => {
+export const signup = createAsyncThunk(
+  'auth/signup', 
+  async (userData: User) => {
   try {
     const response = await axios.post('http://localhost:3000/api/auth/signup', userData);
     return response.data.user;
