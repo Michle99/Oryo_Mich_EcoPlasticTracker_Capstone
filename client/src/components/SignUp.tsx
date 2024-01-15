@@ -26,7 +26,7 @@ const Signup: React.FC = () => {
 
   const handleSignup = async () => {
     try {
-      dispatch(signup({ email, username, password }));
+      await dispatch(signup({ email, username, password }));
       navigate('/login');
     } catch (error) {
       console.error('Error signing up:', error);
