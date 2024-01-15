@@ -13,17 +13,22 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    if (email && password) {
-      try {
-        await dispatch(login({ email, password }));
-        navigate('/');
-      } catch (error) {
-        console.error('Error logging in:', error);
+    try {
+      if (email && password) {
+        const response = await dispatch(login({ email, password }));
+        if (response.meta.requestStatus === 'fulfilled') {
+          // Assuming login action returns user information in payload
+          console.log('Login successful:', response.payload);
+          navigate('/');
+        } else {
+          console.error('Login failed:', response.meta.requestStatus);
+        }
+      } else {
+        console.error('Email and password are required.');
       }
-    }else {
-      throw Error;
+    } catch (error) {
+      console.error('Error logging in:', error);
     }
-    
   };
 
   const handleEmailChange = (
