@@ -10,7 +10,13 @@ const App: React.FC = () => {
   return (
     <Router>
       <CssBaseline />
-      <Container component="main" maxWidth="lg">
+      <Container 
+        component="main"
+        sx={{
+          padding: '1rem',
+      
+        }}
+      >
         {/* <Header /> */}
         <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
           <Routes>

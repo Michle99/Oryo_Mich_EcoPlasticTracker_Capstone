@@ -11,6 +11,7 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -26,9 +27,11 @@ const Signup: React.FC = () => {
 
   const handleSignup = async () => {
     try {
+      console.log("Clicked signup");
       await dispatch(signup({ email, username, password }));
       navigate('/login');
     } catch (error) {
+      setError('Error signing up. Please check your information and try again.');
       console.error('Error signing up:', error);
     }
   };
@@ -48,6 +51,7 @@ const Signup: React.FC = () => {
         value={password}
         onChange={handlePasswordChange}
       />
+      {error && <Typography color="error">{error}</Typography>}
       <Button variant="contained" color="primary" onClick={handleSignup} sx={{ marginTop: 2 }}>
         Signup
       </Button>
