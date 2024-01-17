@@ -1,8 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface Report {
-  // Define the structure of your report data
   location: string;
   type: string;
   title: string;
@@ -28,12 +27,12 @@ const initialState: ReportState = {
 
 export const fetchReports = createAsyncThunk('reports/fetchReports', async () => {
     const response = await axios.get('http://localhost:3000/api/reports/all');
-    return response.data;
+    return response.data as SubmitReportPayload;
 });
 
 export const submitReport = createAsyncThunk('reports/submitReport', async (reportData: any) => {
     const response = await axios.post('http://localhost:3000/api/reports/submit', reportData);
-    return response.data;
+    return response.data as SubmitReportPayload;
 });
 
 
@@ -46,7 +45,7 @@ const reportsSlice = createSlice({
         .addCase(fetchReports.pending, (state) => {
           state.status = 'loading';
         })
-        .addCase(fetchReports.fulfilled, (state, action) => {
+        .addCase(fetchReports.fulfilled, (state, action: PayloadAction<SubmitReportPayload>) => {
           state.status = 'succeeded';
           state.reports = action.payload;
         })
