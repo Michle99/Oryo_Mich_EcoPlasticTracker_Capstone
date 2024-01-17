@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface Report {
+type Report = {
   location: string;
   type: string;
   title: string;
@@ -10,7 +10,7 @@ interface Report {
 }
 
 // Define the type of the fulfilled action payload
-type SubmitReportPayload = Report;
+export type SubmitReportPayload = Report;
 
 interface ReportState {
   reports: Report[],

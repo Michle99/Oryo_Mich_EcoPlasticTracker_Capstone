@@ -1,21 +1,24 @@
-import React, { useState, FormEvent } from 'react';
-import { Button, TextField, Typography, Container } from '@mui/material';
+import React, { FormEvent, useState } from "react";
+import { Button, TextField, Typography, Container } from "@mui/material";
+import { submitReport, SubmitReportPayload } from "../redux/reportSlice";
+import { useDispatch } from "react-redux";
+import Alert, {AlertProps} from "@mui/material";
 
-interface ReportFormProps {
-  onSubmit: (reportData: object) => void;
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const ReportForm: React.FC<ReportFormProps> = ({ onSubmit }) => {
-  const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [images, setImages] = useState('');
+const ReportForm: React.FC = () => {
+  const [location, setLocation] = useState("");
+  const [type, setType] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState("");
+  const dispatch = useDispatch();
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    const reportData = { location, type, title, description, images };
-    onSubmit(reportData);
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    dispatch(submitReport({ location, type, title, description, images }));
   };
 
   return (
