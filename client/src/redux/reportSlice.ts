@@ -1,6 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+interface ReportState {
+  reports: [],
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+}
+
+const initialState: ReportState = { 
+  reports: [], 
+  status: 'idle', 
+  error: null ,
+};
+
 
 export const fetchReports = createAsyncThunk('reports/fetchReports', async () => {
     const response = await axios.get('http://localhost:3000/api/reports/all');
@@ -15,7 +27,7 @@ export const submitReport = createAsyncThunk('reports/submitReport', async (repo
 
 const reportsSlice = createSlice({
     name: 'reports',
-    initialState: { reports: [], status: 'idle', error: null },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
       builder
@@ -28,7 +40,7 @@ const reportsSlice = createSlice({
         })
         .addCase(fetchReports.rejected, (state, action) => {
           state.status = 'failed';
-          state.error = action.error.message;
+          state.error = action.error.message as string;
         })
         .addCase(submitReport.fulfilled, (state, action) => {
           state.status = 'succeeded';
