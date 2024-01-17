@@ -5,6 +5,7 @@ import { CssBaseline, Container, Paper } from '@mui/material';
 import Home from './components/Home';
 import Signup from './components/SignUp';
 import Login from './components/Login';
+import ReportForm from './components/ReportForm';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/login" element={<Login />}/> 
+            <Route path="/submit" element={<ReportForm/>} />
           </Routes>
         </Paper>
       </Container>
