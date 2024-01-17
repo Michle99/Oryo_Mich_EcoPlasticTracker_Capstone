@@ -6,14 +6,14 @@ interface Report {
   type: string;
   title: string;
   description: string;
-  images: string;
+  images: string | string[];
 }
 
 // Define the type of the fulfilled action payload
 type SubmitReportPayload = Report;
 
 interface ReportState {
-  reports: [],
+  reports: Report[],
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -27,10 +27,10 @@ const initialState: ReportState = {
 
 export const fetchReports = createAsyncThunk('reports/fetchReports', async () => {
     const response = await axios.get('http://localhost:3000/api/reports/all');
-    return response.data as SubmitReportPayload;
+    return response.data as SubmitReportPayload[];
 });
 
-export const submitReport = createAsyncThunk('reports/submitReport', async (reportData: any) => {
+export const submitReport = createAsyncThunk('reports/submitReport', async (reportData: Report) => {
     const response = await axios.post('http://localhost:3000/api/reports/submit', reportData);
     return response.data as SubmitReportPayload;
 });
@@ -45,7 +45,7 @@ const reportsSlice = createSlice({
         .addCase(fetchReports.pending, (state) => {
           state.status = 'loading';
         })
-        .addCase(fetchReports.fulfilled, (state, action: PayloadAction<SubmitReportPayload>) => {
+        .addCase(fetchReports.fulfilled, (state, action: PayloadAction<SubmitReportPayload[]>) => {
           state.status = 'succeeded';
           state.reports = action.payload;
         })
