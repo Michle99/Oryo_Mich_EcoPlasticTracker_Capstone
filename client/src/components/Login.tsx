@@ -19,7 +19,7 @@ const Login: React.FC = () => {
         if (response.meta.requestStatus === 'fulfilled') {
           // Assuming login action returns user information in payload
           console.log('Login successful:', response.payload);
-          navigate('submit');
+          navigate('/submit');
         } else {
           console.error('Login failed:', response.meta.requestStatus);
         }
