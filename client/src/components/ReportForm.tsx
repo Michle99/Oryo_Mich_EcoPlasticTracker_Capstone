@@ -1,12 +1,8 @@
 import React, { FormEvent, useState } from "react";
 import { Button, TextField, Typography, Container } from "@mui/material";
-import { submitReport, SubmitReportPayload } from "../redux/reportSlice";
+import { submitReport } from "../redux/reportSlice";
 import { useDispatch } from "react-redux";
-import Alert, {AlertProps} from "@mui/material";
-
-function Alert(props: AlertProps) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import { AppDispatch } from '../redux/store';
 
 const ReportForm: React.FC = () => {
   const [location, setLocation] = useState("");
@@ -14,10 +10,11 @@ const ReportForm: React.FC = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState("");
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    // AppDispatch from store needs to be inherited
     dispatch(submitReport({ location, type, title, description, images }));
   };
 

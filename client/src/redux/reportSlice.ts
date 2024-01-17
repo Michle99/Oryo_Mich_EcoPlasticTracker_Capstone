@@ -53,7 +53,7 @@ const reportsSlice = createSlice({
           state.status = 'failed';
           state.error = action.error.message as string;
         })
-        .addCase(submitReport.fulfilled, (state, action) => {
+        .addCase(submitReport.fulfilled, (state, action: PayloadAction<SubmitReportPayload>) => {
           state.status = 'succeeded';
           state.reports.push(action.payload);
         });
