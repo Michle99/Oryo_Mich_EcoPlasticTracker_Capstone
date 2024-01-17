@@ -1,6 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+interface Report {
+  // Define the structure of your report data
+  location: string;
+  type: string;
+  title: string;
+  description: string;
+  images: string;
+}
+
+// Define the type of the fulfilled action payload
+type SubmitReportPayload = Report;
+
 interface ReportState {
   reports: [],
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
