@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 interface AuthState {
     user: null | { id: string; email: string; username: string };
     status: 'idle' | 'loading' | 'succeeded' | 'failed';

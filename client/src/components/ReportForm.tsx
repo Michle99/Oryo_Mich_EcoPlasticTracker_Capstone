@@ -14,7 +14,7 @@ const ReportForm: React.FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // AppDispatch from store needs to be inherited
+    // AppDispatch from store needs to be inherited 
     dispatch(submitReport({ location, type, title, description, images }));
   };
 
