@@ -46,7 +46,7 @@ export const login = createAsyncThunk("auth/login", async (userData: User) => {
       userData
     );
     localStorage.setItem("userInfo", JSON.stringify(response.data.user));
-    return response.data.user;
+    return response.data;
   } catch (error) {
     console.error("Error login in user:", error);
     throw error;
