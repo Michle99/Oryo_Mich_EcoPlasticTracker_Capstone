@@ -17,7 +17,6 @@ const Login: React.FC = () => {
       if (email && password) {
         const response = await dispatch(login({ email, password }));
         if (response.meta.requestStatus === 'fulfilled') {
-          // Assuming login action returns user information in payload
           console.log('Login successful:', response.payload);
           navigate('/submit');
         } else {

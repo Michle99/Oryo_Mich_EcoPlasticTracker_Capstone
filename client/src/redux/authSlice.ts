@@ -5,12 +5,14 @@ interface AuthState {
     user: null | { id: string; email: string; username: string };
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
+    token: string | null;
 }
   
 const initialState: AuthState = {
     user: null,
     status: 'idle',
     error: null,
+    token: null,
 };
 
 type User = {
@@ -69,6 +71,7 @@ const authSlice = createSlice({
         .addCase(login.fulfilled, (state, action) => {
           state.status = 'succeeded';
           state.user = action.payload;
+          state.token = action.payload.token;
         })
         .addCase(login.rejected, (state, action) => {
           state.status = 'failed';

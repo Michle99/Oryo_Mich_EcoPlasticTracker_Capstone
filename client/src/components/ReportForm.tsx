@@ -14,7 +14,7 @@ const ReportForm: React.FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // AppDispatch from store needs to be inherited 
+    //* AppDispatch from store needs to be inherited 
     dispatch(submitReport({ location, type, title, description, images }));
   };
 
@@ -58,6 +58,9 @@ const ReportForm: React.FC = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        /**
+         * TODO: Refactor images input
+         */
         <TextField
           label="Images (optional)"
           variant="outlined"
