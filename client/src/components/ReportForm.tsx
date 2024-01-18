@@ -4,6 +4,10 @@ import { submitReport } from "../redux/reportSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from '../redux/store';
 
+/*
+* TODO: Refactor images input
+*/
+
 const ReportForm: React.FC = () => {
   const [location, setLocation] = useState("");
   const [type, setType] = useState("");
@@ -58,9 +62,6 @@ const ReportForm: React.FC = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        /**
-        * TODO: Refactor images input
-        */
         <TextField
           label="Images (optional)"
           variant="outlined"
