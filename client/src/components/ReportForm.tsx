@@ -59,8 +59,8 @@ const ReportForm: React.FC = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         /**
-         * TODO: Refactor images input
-         */
+        * TODO: Refactor images input
+        */
         <TextField
           label="Images (optional)"
           variant="outlined"
