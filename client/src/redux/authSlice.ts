@@ -17,7 +17,7 @@ const initialState: AuthState = {
   user: null,
   status: "idle",
   error: null,
-  token: null,
+  token,
 };
 
 type User = {
