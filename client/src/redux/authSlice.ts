@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+//* Initialize token from localStorage
+const token = localStorage.getItem('userInfo')
+  ? localStorage.getItem('userInfo')
+  : null;
+
 interface AuthState {
   user: null | { id: string; email: string; username: string };
   status: "idle" | "loading" | "succeeded" | "failed";
