@@ -65,9 +65,16 @@ const reportsSlice = createSlice({
           state.status = 'failed';
           state.error = action.error.message as string;
         })
+        .addCase(submitReport.pending, (state) => {
+          state.status = 'loading';
+        })
         .addCase(submitReport.fulfilled, (state, action: PayloadAction<SubmitReportPayload>) => {
           state.status = 'succeeded';
           state.reports.push(action.payload);
+        })
+        .addCase(submitReport.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message as string;
         });
     },
   });
