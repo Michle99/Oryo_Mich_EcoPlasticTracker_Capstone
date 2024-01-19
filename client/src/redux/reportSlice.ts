@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { RootState } from './store';
 
 type Report = {
   location: string;
@@ -24,14 +25,25 @@ const initialState: ReportState = {
   error: null ,
 };
 
-
-export const fetchReports = createAsyncThunk('reports/fetchReports', async () => {
+export const fetchReports = createAsyncThunk(
+  'reports/fetchReports', 
+  async () => {
     const response = await axios.get('http://localhost:3000/api/reports/all');
     return response.data as SubmitReportPayload[];
 });
 
-export const submitReport = createAsyncThunk('reports/submitReport', async (reportData: Report) => {
-    const response = await axios.post('http://localhost:3000/api/reports/submit', reportData);
+export const submitReport = createAsyncThunk(
+  'reports/submitReport', 
+  async (reportData: Report, { getState }) => {
+    const { auth } = getState() as RootState;
+    const response = await axios.post(
+      'http://localhost:3000/api/reports/submit', 
+      reportData, {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        }
+      }
+    );
     return response.data as SubmitReportPayload;
 });
 

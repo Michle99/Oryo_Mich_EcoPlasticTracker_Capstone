@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Typography, TextField, Button } from '@mui/material';
 import { login } from '../redux/authSlice';
@@ -10,10 +10,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const { user, error } = useSelector((state) => state.auth)
-  // useEffect(() => {
-    
-  // })
+  
 
   const handleLogin = async () => {
     try {
