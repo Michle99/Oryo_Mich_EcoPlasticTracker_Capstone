@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from "react";
 import { Button, TextField, Typography, Container } from "@mui/material";
 import { submitReport } from "../redux/reportSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState  } from '../redux/store';
+import { useDispatch } from "react-redux";
+import { AppDispatch } from '../redux/store';
 
 /*
 * TODO: Refactor images input
@@ -15,7 +15,6 @@ const ReportForm: React.FC = () => {
   const [description, setDescription] = useState("");
   const [images, setImages] = useState("");
   const dispatch: AppDispatch = useDispatch();
-  const token = useSelector((state: RootState) => state.auth.token);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

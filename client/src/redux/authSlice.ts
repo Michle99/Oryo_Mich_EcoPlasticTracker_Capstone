@@ -45,7 +45,8 @@ export const login = createAsyncThunk("auth/login", async (userData: User) => {
       "http://localhost:3000/api/auth/login",
       userData
     );
-    localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+    localStorage.setItem("userInfo", JSON.stringify(response.data));
+    console.log("Data from login route:", response);
     return response.data;
   } catch (error) {
     console.error("Error login in user:", error);
