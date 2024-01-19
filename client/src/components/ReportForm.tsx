@@ -15,11 +15,12 @@ const ReportForm: React.FC = () => {
   const [description, setDescription] = useState("");
   const [images, setImages] = useState("");
   const dispatch: AppDispatch = useDispatch();
+  // const auth = useSelector((state: RootState) => state.auth)
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     //* AppDispatch from store needs to be inherited 
-    dispatch(submitReport({ location, type, title, description, images }));
+    dispatch(submitReport({ reportData: { location, type, title, description, images } }));
   };
 
   return (

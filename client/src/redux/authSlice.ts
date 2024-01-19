@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //* Initialize token from localStorage
@@ -28,6 +28,10 @@ type NewUser = User & {
   username: string;
 };
 
+type LoginResponse = {
+  user: AuthState['user'];
+  token: string;
+}
 export const signup = createAsyncThunk(
   "auth/signup",
   async (userData: NewUser) => {
@@ -44,15 +48,18 @@ export const signup = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk("auth/login", async (userData: User) => {
+export const login = createAsyncThunk(
+  "auth/login", 
+  async (userData: User): Promise<LoginResponse> => {
   try {
     const response = await axios.post(
       "http://localhost:3000/api/auth/login",
       userData
     );
-    localStorage.setItem("userInfo", JSON.stringify(response.data));
+    const { user, token } = response.data;
+    localStorage.setItem("userInfo", JSON.stringify(user));
     console.log("Data from login route:", response);
-    return response.data;
+    return { user, token };
   } catch (error) {
     console.error("Error login in user:", error);
     throw error;
@@ -79,9 +86,9 @@ const authSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
         state.status = "succeeded";
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
