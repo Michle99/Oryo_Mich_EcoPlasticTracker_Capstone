@@ -2,7 +2,10 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 type Report = {
-  location: string;
+  location: {
+    type: string;
+    coordinates: [number, number];
+  };
   type: string;
   title: string;
   description: string;
@@ -27,7 +30,9 @@ const initialState: ReportState = {
 export const fetchReports = createAsyncThunk(
   'reports/fetchReports', 
   async () => {
-    const response = await axios.get('http://localhost:3000/api/reports/all');
+    const response = await axios.get(
+      'http://localhost:3000/api/reports/all'
+    );
     return response.data as SubmitReportPayload[];
 });
 
