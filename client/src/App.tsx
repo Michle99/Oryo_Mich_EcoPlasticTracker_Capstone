@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Signup from './components/SignUp';
 import Login from './components/Login';
 import ReportForm from './components/ReportForm';
+import ReportList from './components/ReportList';
 
 const App: React.FC = () => {
   return (
@@ -15,7 +16,6 @@ const App: React.FC = () => {
         component="main"
         sx={{
           padding: '1rem',
-      
         }}
       >
         {/* <Header /> */}
@@ -25,6 +25,7 @@ const App: React.FC = () => {
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/login" element={<Login />}/> 
             <Route path="/submit" element={<ReportForm/>} />
+            <Route path="/list" element={<ReportList/>} />
           </Routes>
         </Paper>
       </Container>
