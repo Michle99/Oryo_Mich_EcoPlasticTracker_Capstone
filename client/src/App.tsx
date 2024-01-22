@@ -11,6 +11,7 @@ import ReportList from './components/ReportList';
 const App: React.FC = () => {
   return (
     <Router>
+      {/* <Header /> */}
       <CssBaseline />
       <Container 
         component="main"
@@ -18,7 +19,7 @@ const App: React.FC = () => {
           padding: '1rem',
         }}
       >
-        {/* <Header /> */}
+        
         <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
           <Routes>
             <Route path="/" element={<Home/>}/>

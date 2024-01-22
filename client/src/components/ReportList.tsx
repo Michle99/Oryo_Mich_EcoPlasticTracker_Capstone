@@ -16,8 +16,8 @@ const ReportList: React.FC = () => {
 
   return (
     <Grid container spacing={3}>
-      {reports.map((report: Report) => (
-        <Grid item key={report.title} xs={12} sm={6} md={4}>
+      {reports.map((report: Report, index) => (
+        <Grid item key={index} xs={12} sm={6} md={4}>
           <Card>
             {/* Media Section */}
             {Array.isArray(report.images) && report.images.length > 0 && (
@@ -25,7 +25,7 @@ const ReportList: React.FC = () => {
                 component="img"
                 alt="Pollution Report"
                 height="140"
-                image={report.images[0]} // Display the first image, you can customize as needed
+                image={report.images[0]}
               />
             )}
 
