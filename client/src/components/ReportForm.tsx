@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { submitReport } from "../redux/reportSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../redux/store";
+import { useNavigate } from "react-router-dom";
 
 const ReportForm: React.FC = () => {
   // const [location, setLocation] = useState("");
@@ -13,6 +14,7 @@ const ReportForm: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
   const dispatch: AppDispatch = useDispatch();
   const [coordinates, setCoordinates] = useState<string>("");
+  const navigate = useNavigate();
 
   const onDrop = (acceptedFiles: File[]) => {
     // Convert the dropped files to an array of data URLs
@@ -48,6 +50,7 @@ const ReportForm: React.FC = () => {
             },
           })
         );
+        navigate("/list");
       } else {
         console.error("Invalid coordinates format. Please enter valid coordinates.");
       }

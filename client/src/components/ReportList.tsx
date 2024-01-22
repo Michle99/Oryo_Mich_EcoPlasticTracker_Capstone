@@ -33,9 +33,11 @@ const ReportList: React.FC = () => {
               <Typography variant="h6">{report.title}</Typography>
               <Typography variant="body2">{report.description}</Typography>
               <Typography variant="body2">Type: {report.type}</Typography>
-              <Typography variant="body2">
-                Location: {report.location.coordinates[0]}, {report.location.coordinates[1]}
-              </Typography>
+              {report.location && report.location.coordinates && (
+                <Typography variant="body2">
+                  Location: {report.location.coordinates[0]}, {report.location.coordinates[1]}
+                </Typography>
+              )}
             </CardContent>
           </Card>
         </Grid>
