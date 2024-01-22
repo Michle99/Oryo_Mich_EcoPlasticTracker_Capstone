@@ -7,6 +7,7 @@ import Signup from './components/SignUp';
 import Login from './components/Login';
 import ReportForm from './components/ReportForm';
 import ReportList from './components/ReportList';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           </Routes>
         </Paper>
       </Container>
+      <Footer/>
     </Router>
   );
 };
