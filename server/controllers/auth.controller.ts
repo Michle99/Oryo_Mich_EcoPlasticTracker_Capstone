@@ -1,4 +1,3 @@
-// src/controllers/auth.controller.ts
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -56,8 +55,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Generate JWT token
-    // const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
-    // console.log("Show token:", token)
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+    console.log("Show token:", token)
     res.status(200).json({ message: 'User loggedin successfully' });
   } catch (error) {
     console.error('Error logging in user:', error);

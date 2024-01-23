@@ -5,15 +5,15 @@ import { authenticateUser } from '../middlewares/auth.middleware';
 const router = express.Router();
 
 // Submit pollution report route (protected)
-router.post('/submit', submitPollutionReport);
+router.post('/submit', authenticateUser, submitPollutionReport);
 
 // Get all pollution reports route
-router.get('/all', getAllPollutionReports);
+router.get('/all', authenticateUser, getAllPollutionReports);
 
 // Update pollution report route (protected)
-router.put('/update/:id', updatePollutionReport);
+router.put('/update/:id', authenticateUser, updatePollutionReport);
 
 // Delete pollution report route (protected)
-router.delete('/delete/:id', deletePollutionReport);
+router.delete('/delete/:id', authenticateUser, deletePollutionReport);
 
 export default router;
