@@ -114,6 +114,18 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message as string;
+      })
+      .addCase(logout.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.status = 'idle';
+        state.user = null;
+        state.token = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message as string;
       });
   },
 });
