@@ -66,6 +66,26 @@ export const login = createAsyncThunk(
   }
 });
 
+
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (userData: User): Promise<LoginResponse> => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/logout",
+        userData
+      );
+      const { user, token } = response.data;
+      localStorage.removeItem("userInfo");
+      console.log("Data from login route:", response);
+      return { user, token };
+    } catch (error) {
+      console.error("Error loggin out in user:", error);
+      throw error;
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
