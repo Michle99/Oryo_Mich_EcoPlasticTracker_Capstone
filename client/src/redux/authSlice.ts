@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //* Initialize token from localStorage
-const token = localStorage.getItem('userInfo')
-  ? localStorage.getItem('userInfo')
+const token = localStorage.getItem("userInfo")
+  ? localStorage.getItem("userInfo")
   : null;
 
 interface AuthState {
@@ -28,10 +28,11 @@ type NewUser = User & {
   username: string;
 };
 
-type LoginResponse = {
-  user: AuthState['user'];
-  token: string;
-}
+// type LoginResponse = {
+//   user: AuthState["user"];
+//   token: typeof token;
+// };
+
 export const signup = createAsyncThunk(
   "auth/signup",
   async (userData: NewUser) => {
@@ -40,7 +41,9 @@ export const signup = createAsyncThunk(
         "http://localhost:3000/api/auth/signup",
         userData
       );
-      return response.data.user;
+      console.log("Data from signup:", response);
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
+      return response.data;
     } catch (error) {
       console.error("Error in registering user:", error);
       throw error;
@@ -49,42 +52,35 @@ export const signup = createAsyncThunk(
 );
 
 export const login = createAsyncThunk(
-  "auth/login", 
-  async (userData: User): Promise<LoginResponse> => {
-  try {
-    const response = await axios.post(
-      "http://localhost:3000/api/auth/login",
-      userData
-    );
-    const { user, token } = response.data;
-    localStorage.setItem("userInfo", JSON.stringify(user));
-    console.log("Data from login route:", response);
-    return { user, token };
-  } catch (error) {
-    console.error("Error login in user:", error);
-    throw error;
-  }
-});
-
-
-export const logout = createAsyncThunk(
-  "auth/logout",
-  async (userData: User): Promise<LoginResponse> => {
+  "auth/login",
+  async (userData: User) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/logout",
+        "http://localhost:3000/api/auth/login",
         userData
       );
-      const { user, token } = response.data;
-      localStorage.removeItem("userInfo");
+      // const { user, token } = response.data;
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
       console.log("Data from login route:", response);
-      return { user, token };
+      return response.data;
     } catch (error) {
-      console.error("Error loggin out in user:", error);
+      console.error("Error login in user:", error);
       throw error;
     }
   }
-)
+);
+
+export const logout = createAsyncThunk("auth/logout", async () => {
+  try {
+    const response = await axios.post("http://localhost:3000/api/auth/logout");
+    localStorage.removeItem("userInfo");
+    console.log("Data from login route:", response);
+    return null;
+  } catch (error) {
+    console.error("Error loggin out in user:", error);
+    throw error;
+  }
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -106,25 +102,28 @@ const authSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
-        state.status = "succeeded";
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-      })
+      .addCase(
+        login.fulfilled,
+        (state, action) => {
+          state.status = "succeeded";
+          state.user = action.payload;
+          state.token = action.payload.token;
+        }
+      )
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message as string;
       })
       .addCase(logout.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(logout.fulfilled, (state) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.user = null;
         state.token = null;
       })
       .addCase(logout.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message as string;
       });
   },

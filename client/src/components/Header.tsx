@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { AppDispatch, useAppSelector } from '../redux/store';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { logout } from '../redux/authSlice';
+import { AppDispatch } from '../redux/store';
 
 const Header: React.FC = () => {
 
   const dispatch: AppDispatch = useDispatch();
-//   const userInfo = useAppSelector((state) => state.auth.user)
-  useEffect(() => {
-    // if ()
-  })
+  const navigate = useNavigate();
+  // const userInfo = useAppSelector((state) => state.auth.user)
+  
+  const handleLogout = async () => {
+    try {
+        await dispatch(logout());
+        navigate("/login");
+      } catch (e) {
+        console.error(e);
+    }
+  }
 
   return (
     <AppBar position="static">
@@ -28,6 +36,12 @@ const Header: React.FC = () => {
         </Button>
         <Button color="inherit" component={Link} to="/list">
           Reports
+        </Button>
+        <Button 
+          color="inherit"
+          onClick={handleLogout}
+        >
+          Logout
         </Button>
       </Toolbar>
     </AppBar>
