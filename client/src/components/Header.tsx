@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { AppDispatch, useAppSelector } from '../redux/store';
+import { useDispatch } from 'react-redux';
 
 const Header: React.FC = () => {
+
+  const dispatch: AppDispatch = useDispatch();
+//   const userInfo = useAppSelector((state) => state.auth.user)
+  useEffect(() => {
+    // if ()
+  })
+
   return (
     <AppBar position="static">
       <Toolbar sx={{ marginRight: 2 }}>
