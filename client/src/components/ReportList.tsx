@@ -25,7 +25,7 @@ const ReportList: React.FC = () => {
                 component="img"
                 alt="Pollution Report"
                 height="140"
-                image={report.images[0]}
+                image={report.images[0]} //* create an image slider
               />
             )}
 

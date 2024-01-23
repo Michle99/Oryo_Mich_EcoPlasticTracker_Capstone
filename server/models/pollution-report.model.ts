@@ -8,7 +8,7 @@ export interface IPollutionReport extends Document {
   title: string;
   description: string;
   type: string;
-  images: string[]; // Array of image URLs
+  images: string[];
 }
 
 const pollutionReportSchema: Schema<IPollutionReport> = new Schema({

@@ -7,7 +7,6 @@ import { AppDispatch } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 
 const ReportForm: React.FC = () => {
-  // const [location, setLocation] = useState("");
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

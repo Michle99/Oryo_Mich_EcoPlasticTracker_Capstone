@@ -30,7 +30,7 @@ const Home: React.FC = () => {
         <Button component={Link} to="/signup" variant="contained" color="primary">
           Sign Up
         </Button>
-        <Button component={Link} to="/login" variant="outlined" color="primary">
+        <Button component={Link} to="/login" variant="contained" color="primary">
           Login
         </Button>
       </Container>
