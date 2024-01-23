@@ -15,9 +15,9 @@ export const submitPollutionReport = async (req: Request, res: Response): Promis
     });
 
     // Save the report to the database
-    await newReport.save();
+    const savedReport = await newReport.save();
 
-    res.status(201).json(newReport);
+    res.status(201).json(savedReport);
   } catch (error) {
     console.error('Error submitting pollution report:', error);
     res.status(500).json({ error: 'Internal server error' });
