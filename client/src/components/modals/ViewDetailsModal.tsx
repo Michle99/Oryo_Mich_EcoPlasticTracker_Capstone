@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogTitle, Typography, Button } from '@mui/material';
+import { Dialog, DialogContent, DialogTitle, Typography, Button, DialogContentText, DialogActions } from '@mui/material';
 import { Report } from '../../redux/reportSlice';
 
 interface ViewDetailsModalProps {
@@ -8,19 +8,22 @@ interface ViewDetailsModalProps {
   report: Report;
 }
 
-const ViewDetailsModal: React.FC<ViewDetailsModalProps> = ({ isOpen, onClose, report }) => {
+const ViewDetailsModal: React.FC<ViewDetailsModalProps> = ({ 
+  isOpen, onClose, report 
+}) => {
   return (
     <Dialog open={isOpen} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>
-        <Typography variant="h6">{report.title}</Typography>
-      </DialogTitle>
+      <DialogTitle>{report.title}</DialogTitle>
       <DialogContent>
         <Typography variant="body1">{report.description}</Typography>
         <Typography variant="body1">{report.type}</Typography>
         <Typography variant="body1">{report.location.coordinates}</Typography>
-        <Button onClick={onClose} variant="contained" color="primary" fullWidth>
-          Close
-        </Button>
+        <DialogContentText>{report.description}</DialogContentText>
+        <DialogActions>
+          <Button onClick={onClose} variant="contained" color="primary" fullWidth>
+            Close
+          </Button>
+        </DialogActions>
       </DialogContent>
     </Dialog>
   );

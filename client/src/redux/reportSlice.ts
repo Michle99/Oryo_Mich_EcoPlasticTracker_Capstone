@@ -76,7 +76,7 @@ export const updateReport = createAsyncThunk(
   async ({ _id, updatedReport }: UpdateReportPayload, { getState }) => {
     const { auth } = getState() as RootState;
     const response = await axios.put(
-      `http://localhost:3000/api/reports/${_id}`,
+      `http://localhost:3000/api/reports/update/${_id}`,
       updatedReport,
       {
         headers: {

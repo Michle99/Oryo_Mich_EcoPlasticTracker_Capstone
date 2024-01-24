@@ -22,7 +22,8 @@ const EditForm: React.FC<EditFormProps> = ({ report, onClose }) => {
 
     // Dispatch the updateReport action with the edited report data
     dispatch(
-      updateReport({ _id: report._id, 
+      updateReport({ 
+        _id: report._id, 
         updatedReport: 
         { 
           ...report, 
