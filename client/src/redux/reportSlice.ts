@@ -87,6 +87,24 @@ export const updateReport = createAsyncThunk(
   }
 );
 
+// Additional async thunk for deleting a report
+export const deleteReport = createAsyncThunk(
+  'reports/deleteReport',
+  async ({ _id }: DeleteReportPayload, { getState }) => {
+    const { auth } = getState() as RootState;
+    const response = await axios.delete(
+      `http://localhost:3000/api/reports/${_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        }
+      }
+    );
+    return response.data as SubmitReportPayload;
+  }
+);
+
+
 const reportsSlice = createSlice({
     name: 'reports',
     initialState,
