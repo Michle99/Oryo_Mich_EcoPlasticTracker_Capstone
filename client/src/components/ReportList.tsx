@@ -6,6 +6,11 @@ import { AppDispatch } from "../redux/store";
 import ReportItem from './ReportItem';
 import { Grid } from '@mui/material';
 
+/**
+ * TODO: Login Alert for unauthorized access
+ * @returns A List of ReportItem(s)
+ */
+
 const ReportList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const reports = useSelector((state: RootState) => state.report.reports);
@@ -19,7 +24,7 @@ const ReportList: React.FC = () => {
     <Grid container spacing={3}>
       {reports.map((report: Report, index) => (
         <Grid item key={index} xs={12} sm={6} md={4}>
-          {/* Use the new ReportItem component */}
+          {/* Return ReportItem component */}
           <ReportItem report={report} />
         </Grid>
       ))}
