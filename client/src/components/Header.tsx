@@ -2,14 +2,14 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logout } from '../redux/authSlice';
-import { AppDispatch } from '../redux/store';
+import { logout, selectUser } from '../redux/authSlice';
+import { AppDispatch, useAppSelector } from '../redux/store';
 
 const Header: React.FC = () => {
 
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  // const userInfo = useAppSelector((state) => state.auth.user)
+  const user = useAppSelector(selectUser);
   
   const handleLogout = async () => {
     try {
@@ -37,12 +37,17 @@ const Header: React.FC = () => {
         <Button color="inherit" component={Link} to="/list">
           Reports
         </Button>
-        <Button 
-          color="inherit"
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
+        {user ? (
+          // User is authenticated, show logout button
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
+        ) : (
+          // User is not authenticated, show login button
+          <Button color="inherit" component={Link} to="/login">
+            Login
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );
