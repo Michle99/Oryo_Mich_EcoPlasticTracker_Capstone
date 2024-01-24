@@ -132,6 +132,33 @@ const reportsSlice = createSlice({
         .addCase(submitReport.rejected, (state, action) => {
           state.status = 'failed';
           state.error = action.error.message as string;
+        })
+        .addCase(updateReport.pending, (state) => {
+          state.status = 'loading';
+        })
+        .addCase(updateReport.fulfilled, (state, action: PayloadAction<SubmitReportPayload>) => {
+          state.status = 'succeeded';
+          // Update the existing report in the state
+          const updatedIndex = state.reports.findIndex((report) => report._id === action.payload._id);
+          if (updatedIndex !== -1) {
+            state.reports[updatedIndex] = action.payload;
+          }
+        })
+        .addCase(updateReport.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message as string;
+        })
+        .addCase(deleteReport.pending, (state) => {
+          state.status = 'loading';
+        })
+        .addCase(deleteReport.fulfilled, (state, action: PayloadAction<SubmitReportPayload>) => {
+          state.status = 'succeeded';
+          // Remove the deleted report from the state
+          state.reports = state.reports.filter((report) => report._id !== action.payload._id);
+        })
+        .addCase(deleteReport.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message as string;
         });
     },
   });
