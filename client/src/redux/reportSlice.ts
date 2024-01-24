@@ -94,7 +94,7 @@ export const deleteReport = createAsyncThunk(
   async ({ _id }: DeleteReportPayload, { getState }) => {
     const { auth } = getState() as RootState;
     const response = await axios.delete(
-      `http://localhost:3000/api/reports/${_id}`,
+      `http://localhost:3000/api/reports/delete/${_id}`,
       {
         headers: {
           Authorization: `Bearer ${auth.token}`,
