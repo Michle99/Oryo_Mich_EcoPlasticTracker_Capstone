@@ -9,6 +9,8 @@ interface ReportItemProps {
 
 const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [viewDetailsModalOpen, setViewDetailsModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
 
   const handleNextImage = () => {
     if (Array.isArray(report.images) && report.images.length > 0) {
