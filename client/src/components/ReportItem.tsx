@@ -90,6 +90,14 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
           <Button onClick={closeViewDetailsModal}>Close</Button>
         </div>
       </Modal>
+
+      {/* Edit Modal */}
+      <Modal open={editModalOpen} onClose={closeEditModal}>
+        <div>
+          <h2>Edit Report</h2>
+          {/* <EditForm report={report} onClose={closeEditModal} /> */}
+        </div>
+      </Modal>
     </Card>
   );
 };
