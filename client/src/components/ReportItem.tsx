@@ -24,6 +24,12 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
     }
   };
 
+  const openViewDetailsModal = () => setViewDetailsModalOpen(true);
+  const closeViewDetailsModal = () => setViewDetailsModalOpen(false);
+
+  const openEditModal = () => setEditModalOpen(true);
+  const closeEditModal = () => setEditModalOpen(false);
+  
   return (
     <Card>
       {/* Image Slider Section */}
