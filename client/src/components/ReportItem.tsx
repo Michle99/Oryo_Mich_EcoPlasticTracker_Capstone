@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, ButtonGroup } from '@mui/material';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Report } from '../redux/reportSlice';
 
 interface ReportItemProps {
@@ -29,7 +29,7 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
 
   const openEditModal = () => setEditModalOpen(true);
   const closeEditModal = () => setEditModalOpen(false);
-  
+
   return (
     <Card>
       {/* Image Slider Section */}
@@ -62,16 +62,14 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
         {/* Buttons for view, edit, and delete actions */}
         <ButtonGroup fullWidth>
           <Button 
-            component={Link} 
-            to={`/report/${report._id}`} 
+            onClick={openViewDetailsModal} 
             variant="outlined" 
             color="primary"
           >
             View Details
           </Button>
           <Button 
-            component={Link}
-            to={`/report/${report._id}`}
+            onClick={openEditModal}
             variant="outlined" 
             color="secondary"
           >
