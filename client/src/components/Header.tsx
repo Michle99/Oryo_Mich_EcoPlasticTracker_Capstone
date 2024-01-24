@@ -5,6 +5,10 @@ import { useDispatch } from 'react-redux';
 import { logout, selectUser } from '../redux/authSlice';
 import { AppDispatch, useAppSelector } from '../redux/store';
 
+/***
+ * TODO: Make Header responsive to smaller screen sizes
+ */
+
 const Header: React.FC = () => {
 
   const dispatch: AppDispatch = useDispatch();
