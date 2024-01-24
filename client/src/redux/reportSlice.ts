@@ -46,6 +46,7 @@ export const fetchReports = createAsyncThunk(
     const response = await axios.get(
       'http://localhost:3000/api/reports/all',
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${auth.token}`,
         }
@@ -60,8 +61,11 @@ export const submitReport = createAsyncThunk(
   async ({reportData }: { reportData: Report }, { getState }) => {
     const { auth } = getState() as RootState;
     const response = await axios.post(
-      'http://localhost:3000/api/reports/submit', reportData, {
+      'http://localhost:3000/api/reports/submit', reportData, 
+      {
+        withCredentials: true,
         headers: {
+          'Access-Control-Allow-Origin': "*",
           Authorization: `Bearer ${auth.token}`,
         }
       }
@@ -77,8 +81,9 @@ export const updateReport = createAsyncThunk(
     const { auth } = getState() as RootState;
     const response = await axios.put(
       `http://localhost:3000/api/reports/update/${_id}`,
-      updatedReport,
+      updatedReport, 
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${auth.token}`,
         }
@@ -96,6 +101,7 @@ export const deleteReport = createAsyncThunk(
     const response = await axios.delete(
       `http://localhost:3000/api/reports/delete/${_id}`,
       {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${auth.token}`,
         }
