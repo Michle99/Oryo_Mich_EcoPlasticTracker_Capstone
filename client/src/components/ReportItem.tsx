@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, ButtonGroup } from '@mui/material';
-import { Report } from '../redux/reportSlice';
+import { Report, deleteReport, fetchReports } from '../redux/reportSlice';
 import ViewDetailsModal from './modals/ViewDetailsModal';
 import EditFormModal from './modals/EditFormModal';
+import { AppDispatch } from '../redux/store';
+import { useDispatch } from 'react-redux';
 
 interface ReportItemProps {
   report: Report;
@@ -12,6 +14,7 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [viewDetailsModalOpen, setViewDetailsModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
 
   const handleNextImage = () => {
     if (Array.isArray(report.images) && report.images.length > 0) {
