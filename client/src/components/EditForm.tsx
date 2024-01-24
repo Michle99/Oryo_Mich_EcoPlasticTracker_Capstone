@@ -1,7 +1,7 @@
 // EditForm.tsx
 import React, { FormEvent, useState } from 'react';
 import { Button, TextField } from '@mui/material';
-import { Report, updateReport } from '../redux/reportSlice';
+import { Report, fetchReports, updateReport } from '../redux/reportSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../redux/store';
 
@@ -32,7 +32,12 @@ const EditForm: React.FC<EditFormProps> = ({ report, onClose }) => {
           description 
         } 
       })
-    );
+    )
+    .unwrap()
+    .then(() => {
+      // Fetch reports again
+      dispatch(fetchReports());
+    });
 
     // Close the modal after submitting the changes
     onClose();

@@ -15,7 +15,6 @@ const ViewDetailsModal: React.FC<ViewDetailsModalProps> = ({
     <Dialog open={isOpen} onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle>{report.title}</DialogTitle>
       <DialogContent>
-        <Typography variant="body1">{report.description}</Typography>
         <Typography variant="body1">{report.type}</Typography>
         <Typography variant="body1">{report.location.coordinates}</Typography>
         <DialogContentText>{report.description}</DialogContentText>
