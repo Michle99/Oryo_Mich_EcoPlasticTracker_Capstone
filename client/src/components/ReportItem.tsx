@@ -25,6 +25,16 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
     }
   };
 
+  const handleDelete = () => {
+    // Dispatch the deleteReport action with the report's _id
+    dispatch(deleteReport({ _id: report._id }))
+      .unwrap()
+      .then(() => {
+        // Fetch reports again to update the list after deletion
+        dispatch(fetchReports());
+      });
+  };
+
   const openViewDetailsModal = () => setViewDetailsModalOpen(true);
   const closeViewDetailsModal = () => setViewDetailsModalOpen(false);
 
