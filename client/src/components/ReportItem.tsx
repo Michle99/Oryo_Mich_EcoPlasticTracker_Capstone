@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, ButtonGroup, Modal } from '@mui/material';
-// import { Link } from 'react-router-dom';
 import { Report } from '../redux/reportSlice';
+import EditForm from './EditForm';
 
 interface ReportItemProps {
   report: Report;
@@ -81,23 +81,10 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
         </ButtonGroup>
       </CardContent>
       {/* View Details Modal */}
-      <Modal open={viewDetailsModalOpen} onClose={closeViewDetailsModal}>
-        <div>
-          <h2>Report Details</h2>
-          <Typography variant="h6">{report.title}</Typography>
-          <Typography variant="body2">{report.description}</Typography>
-          {/* Add more details as needed */}
-          <Button onClick={closeViewDetailsModal}>Close</Button>
-        </div>
-      </Modal>
+      
 
       {/* Edit Modal */}
-      <Modal open={editModalOpen} onClose={closeEditModal}>
-        <div>
-          <h2>Edit Report</h2>
-          {/* <EditForm report={report} onClose={closeEditModal} /> */}
-        </div>
-      </Modal>
+      
     </Card>
   );
 };
