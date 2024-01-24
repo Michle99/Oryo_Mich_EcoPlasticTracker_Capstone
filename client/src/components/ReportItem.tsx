@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Card, CardContent, CardMedia, Typography, Button, ButtonGroup } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Report } from '../redux/reportSlice';
 
@@ -8,16 +8,39 @@ interface ReportItemProps {
 }
 
 const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const handleNextImage = () => {
+    if (Array.isArray(report.images) && report.images.length > 0) {
+        setImageIndex((prevIndex) => (prevIndex + 1) % report.images.length);
+    }
+  };
+
+  const handlePrevImage = () => {
+    if (Array.isArray(report.images) && report.images.length > 0) {
+        setImageIndex((prevIndex) => (prevIndex - 1 + report.images.length) % report.images.length);
+    }
+  };
+
   return (
     <Card>
-      {/* Media Section */}
+      {/* Image Slider Section */}
       {Array.isArray(report.images) && report.images.length > 0 && (
         <CardMedia
           component="img"
           alt="Pollution Report"
           height="140"
-          image={report.images[0]} //* create an image slider
+          image={report.images[imageIndex]}
+          onClick={handleNextImage}
+          style={{ cursor: 'pointer' }}
         />
+      )}
+      {/* Image Slider Controls */}
+      {Array.isArray(report.images) && report.images.length > 1 && (
+        <ButtonGroup fullWidth>
+          <Button onClick={handlePrevImage}>Previous</Button>
+          <Button onClick={handleNextImage}>Next</Button>
+        </ButtonGroup>
       )}
       <CardContent>
         <Typography variant="h6">{report.title}</Typography>
@@ -28,17 +51,23 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
             Location: {report.location.coordinates[0]}, {report.location.coordinates[1]}
           </Typography>
         )}
-        {/* Add Link to view more details */}
-        <Button component={Link} to={`/report/${report.title}`} variant="outlined" color="primary">
-          View Details
-        </Button>
-        {/* Add buttons for edit and delete actions */}
-        <Button variant="outlined" color="secondary" style={{ marginLeft: '10px' }}>
-          Edit
-        </Button>
-        <Button variant="outlined" color="error" style={{ marginLeft: '10px' }}>
-          Delete
-        </Button>
+        {/* Buttons for view, edit, and delete actions */}
+        <ButtonGroup fullWidth>
+          <Button 
+            component={Link} 
+            to={`/report/${report.title}`} 
+            variant="outlined" 
+            color="primary"
+          >
+            View Details
+          </Button>
+          <Button variant="outlined" color="secondary">
+            Edit
+          </Button>
+          <Button variant="outlined" color="error">
+            Delete
+          </Button>
+        </ButtonGroup>
       </CardContent>
     </Card>
   );

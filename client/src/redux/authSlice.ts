@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "./store";
 
 //* Initialize token from localStorage
 const token = localStorage.getItem("userInfo")
@@ -28,10 +29,7 @@ type NewUser = User & {
   username: string;
 };
 
-// type LoginResponse = {
-//   user: AuthState["user"];
-//   token: typeof token;
-// };
+export const selectUser = (state: RootState) => state.auth.user;
 
 export const signup = createAsyncThunk(
   "auth/signup",

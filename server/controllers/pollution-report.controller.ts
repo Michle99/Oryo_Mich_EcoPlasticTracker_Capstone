@@ -42,14 +42,19 @@ export const updatePollutionReport = async (req: Request, res: Response): Promis
     const updateData: IPollutionReport = req.body;
 
     // Find the pollution report by ID and update it
-    const updatedReport = await PollutionReportModel.findByIdAndUpdate(reportId, updateData, { new: true });
+    const updatedReport = await PollutionReportModel.findByIdAndUpdate(
+      reportId, updateData, { new: true }
+    );
 
     if (!updatedReport) {
       res.status(404).json({ error: 'Pollution report not found' });
       return;
     }
 
-    res.status(200).json({ message: 'Pollution report updated successfully', report: updatedReport });
+    res.status(200).json({ 
+      message: 'Pollution report updated successfully', 
+      report: updatedReport 
+    });
   } catch (error) {
     console.error('Error updating pollution report:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -76,7 +81,10 @@ export const deletePollutionReport = async (req: Request, res: Response): Promis
       return;
     }
 
-    res.status(200).json({ message: 'Pollution report deleted successfully', report: deletedReport });
+    res.status(200).json({ 
+      message: 'Pollution report deleted successfully', 
+      report: deletedReport 
+    });
   } catch (error) {
     console.error('Error deleting pollution report:', error);
     res.status(500).json({ error: 'Internal server error' });

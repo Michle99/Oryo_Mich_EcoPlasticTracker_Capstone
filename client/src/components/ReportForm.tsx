@@ -49,6 +49,8 @@ const ReportForm: React.FC = () => {
             },
           })
         );
+        // Clear images after successful submission
+        setImages([]);
         navigate("/list");
       } else {
         console.error("Invalid coordinates format. Please enter valid coordinates.");
@@ -104,9 +106,18 @@ const ReportForm: React.FC = () => {
         />
         {images.length > 0 && (
           <CardMedia style={imagesContainerStyles}>
-            {images.map((imageUrl, index) => (
-              <img key={index} src={imageUrl} alt={`uploaded-${index}`} style={imageStyles} />
-            ))}
+            {images.map((imageUrl, index) => {
+              console.log(`Image URL at index ${index}:`, imageUrl);
+              return (
+                <img 
+                  key={index} 
+                  src={imageUrl} 
+                  alt={`uploaded-${index}`} 
+                  style={imageStyles} 
+                />
+              )
+              
+            })}
           </CardMedia>
         )}
         <br/>
