@@ -89,7 +89,11 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
           >
             Edit
           </Button>
-          <Button variant="outlined" color="error">
+          <Button 
+            onClick={handleDelete}
+            variant="outlined" 
+            color="error"
+          >
             Delete
           </Button>
         </ButtonGroup>
