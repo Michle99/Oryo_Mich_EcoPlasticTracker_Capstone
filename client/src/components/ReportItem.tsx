@@ -55,13 +55,18 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
         <ButtonGroup fullWidth>
           <Button 
             component={Link} 
-            to={`/report/${report.title}`} 
+            to={`/report/${report._id}`} 
             variant="outlined" 
             color="primary"
           >
             View Details
           </Button>
-          <Button variant="outlined" color="secondary">
+          <Button 
+            component={Link}
+            to={`/report/${report._id}`}
+            variant="outlined" 
+            color="secondary"
+          >
             Edit
           </Button>
           <Button variant="outlined" color="error">

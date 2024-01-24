@@ -3,11 +3,14 @@ import connectDB from './db';
 import authRoutes from "./routes/auth.routes"
 import pollutionReportRoutes from './routes/pollution-report.routes';
 import cors from 'cors'
+import bodyParser from 'body-parser';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+
 app.use(cors({
   origin: " http://localhost:5173",
   credentials: true,
