@@ -69,6 +69,23 @@ export const submitReport = createAsyncThunk(
     return response.data as SubmitReportPayload;
 });
 
+// Additional async thunk for updating/editing a report
+export const updateReport = createAsyncThunk(
+  'reports/updateReport',
+  async ({ _id, updatedReport }: UpdateReportPayload, { getState }) => {
+    const { auth } = getState() as RootState;
+    const response = await axios.put(
+      `http://localhost:3000/api/reports/${_id}`,
+      updatedReport,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        }
+      }
+    );
+    return response.data as SubmitReportPayload;
+  }
+);
 
 const reportsSlice = createSlice({
     name: 'reports',
