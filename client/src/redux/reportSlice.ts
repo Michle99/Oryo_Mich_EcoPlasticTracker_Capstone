@@ -3,6 +3,7 @@ import axios from 'axios';
 import { RootState } from './store';
 
 export type Report = {
+  _id: string;
   location: {
     type: string;
     coordinates: [number, number];
