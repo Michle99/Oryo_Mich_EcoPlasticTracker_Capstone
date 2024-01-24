@@ -16,6 +16,16 @@ export type Report = {
 // Define the type of the fulfilled action payload
 export type SubmitReportPayload = Report;
 
+// Additional types for update/edit and delete actions
+export type UpdateReportPayload = {
+  _id: string;
+  updatedReport: Report;
+};
+
+export type DeleteReportPayload = {
+  _id: string;
+};
+
 interface ReportState {
   reports: Report[],
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -40,6 +50,7 @@ export const fetchReports = createAsyncThunk(
         }
       }
     );
+    localStorage.getItem('reports');
     return response.data as SubmitReportPayload[];
 });
 
@@ -54,6 +65,7 @@ export const submitReport = createAsyncThunk(
         }
       }
     );
+    localStorage.setItem('reports', JSON.stringify(response.data));
     return response.data as SubmitReportPayload;
 });
 

@@ -30,7 +30,7 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
           component="img"
           alt="Pollution Report"
           height="140"
-          image={report.images[imageIndex]}
+          src={report.images[imageIndex]}
           onClick={handleNextImage}
           style={{ cursor: 'pointer' }}
         />
