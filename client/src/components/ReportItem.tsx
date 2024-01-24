@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardMedia, Typography, Button, ButtonGroup } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Button, ButtonGroup, Modal } from '@mui/material';
 // import { Link } from 'react-router-dom';
 import { Report } from '../redux/reportSlice';
 
@@ -80,6 +80,16 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
           </Button>
         </ButtonGroup>
       </CardContent>
+      {/* View Details Modal */}
+      <Modal open={viewDetailsModalOpen} onClose={closeViewDetailsModal}>
+        <div>
+          <h2>Report Details</h2>
+          <Typography variant="h6">{report.title}</Typography>
+          <Typography variant="body2">{report.description}</Typography>
+          {/* Add more details as needed */}
+          <Button onClick={closeViewDetailsModal}>Close</Button>
+        </div>
+      </Modal>
     </Card>
   );
 };
