@@ -5,7 +5,7 @@ interface MapContainerProps {
   coordinates: [number, number];
 }
 
-const MapContainer: React.FC<MapContainerProps> = ({ coordinates }) => {
+const GoogleMapContainer: React.FC<MapContainerProps> = ({ coordinates }) => {
   const mapStyles = {
     height: '400px',
     width: '100%',
@@ -17,7 +17,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ coordinates }) => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="YOUR_API_KEY">
+    <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAP_API_KEY}>
       <GoogleMap mapContainerStyle={mapStyles} zoom={10} center={defaultCenter}>
         <Marker position={defaultCenter} />
       </GoogleMap>
@@ -25,4 +25,4 @@ const MapContainer: React.FC<MapContainerProps> = ({ coordinates }) => {
   );
 };
 
-export default MapContainer;
+export default GoogleMapContainer;
