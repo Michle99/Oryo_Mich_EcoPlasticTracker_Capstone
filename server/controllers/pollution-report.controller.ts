@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import PollutionReportModel, { IPollutionReport } from '../models/pollution-report.model';
 
-export const submitPollutionReport = async (req: Request, res: Response): Promise<void> => {
+export const submitPollutionReport = async (
+  req: Request, 
+  res: Response
+  ): Promise<void> => {
   try {
     const { location, title, description, type, images }: IPollutionReport = req.body;
 
@@ -24,7 +27,10 @@ export const submitPollutionReport = async (req: Request, res: Response): Promis
   }
 };
 
-export const getAllPollutionReports = async (req: Request, res: Response): Promise<void> => {
+export const getAllPollutionReports = async (
+  req: Request, 
+  res: Response
+  ): Promise<void> => {
   try {
     // Retrieve all pollution reports from the database
     const reports = await PollutionReportModel.find();
@@ -36,7 +42,26 @@ export const getAllPollutionReports = async (req: Request, res: Response): Promi
   }
 };
 
-export const updatePollutionReport = async (req: Request, res: Response): Promise<void> => {
+// get location coordinates from reports
+export const getLocationCoordinates = async (
+  req: Request, 
+  res: Response
+  ): Promise<void> => {
+  try {
+    const reports = await PollutionReportModel.find({}, 'location');
+    const coordinates = reports.map((report) => report.location.coordinates);
+    res.json(coordinates);
+  } catch (error) {
+    console.error('Error fetching reports:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+
+}
+
+export const updatePollutionReport = async (
+  req: Request, 
+  res: Response
+  ): Promise<void> => {
   try {
     const reportId = req.params.id;
     const updateData: IPollutionReport = req.body;
@@ -62,7 +87,10 @@ export const updatePollutionReport = async (req: Request, res: Response): Promis
 };
 
 
-export const deletePollutionReport = async (req: Request, res: Response): Promise<void> => {
+export const deletePollutionReport = async (
+  req: Request, 
+  res: Response
+  ): Promise<void> => {
   try {
     const reportId = req.params.id;
 

@@ -30,7 +30,7 @@ const Header: React.FC = () => {
   };
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [alertOpen, setAlertOpen] = useState(false); // State for the AlertModal
+  const [alertOpen, setAlertOpen] = useState(false);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
