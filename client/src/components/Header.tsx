@@ -1,46 +1,92 @@
+// components/Header.tsx
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Button, 
+  IconButton, 
+  Menu, 
+  MenuItem 
+} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout, selectUser } from '../redux/authSlice';
 import { AppDispatch, useAppSelector } from '../redux/store';
-
-/***
- * TODO: Make Header responsive to smaller screen sizes
- */
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header: React.FC = () => {
-
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
-  
+
   const handleLogout = async () => {
     try {
-        await dispatch(logout());
-        navigate("/login");
-      } catch (e) {
-        console.error(e);
+      await dispatch(logout());
+      navigate("/login");
+    } catch (e) {
+      console.error(e);
     }
-  }
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar position="static">
-      <Toolbar sx={{ marginRight: 2 }}>
-        <Button color="inherit" component={Link} to="/">
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            EcoPlastic App
-          </Typography>
-        </Button>
-        <Button color="inherit" component={Link} to="/">
-          Home
-        </Button>
-        <Button color="inherit" component={Link} to="/submit">
-          Form
-        </Button>
-        <Button color="inherit" component={Link} to="/list">
-          Reports
-        </Button>
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleClick}
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem component={Link} to="/" onClick={handleClose}>
+            Home
+          </MenuItem>
+          <MenuItem component={Link} to="/submit" onClick={handleClose}>
+            Form
+          </MenuItem>
+          <MenuItem component={Link} to="/list" onClick={handleClose}>
+            Reports
+          </MenuItem>
+          {user ? (
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          ) : (
+            <MenuItem component={Link} to="/login" onClick={handleClose}>
+              Login
+            </MenuItem>
+          )}
+        </Menu>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          EcoPlastic App
+        </Typography>
         {user ? (
           // User is authenticated, show logout button
           <Button color="inherit" onClick={handleLogout}>
