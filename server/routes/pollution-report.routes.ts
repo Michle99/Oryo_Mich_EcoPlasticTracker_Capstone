@@ -1,5 +1,5 @@
 import express from 'express';
-import { submitPollutionReport, getAllPollutionReports, updatePollutionReport, deletePollutionReport } from '../controllers/pollution-report.controller';
+import { submitPollutionReport, getAllPollutionReports, updatePollutionReport, deletePollutionReport, getLocationCoordinates } from '../controllers/pollution-report.controller';
 import { authenticateUser } from '../middlewares/auth.middleware';
 
 const router = express.Router();
@@ -9,6 +9,9 @@ router.post('/submit', authenticateUser, submitPollutionReport);
 
 // Get all pollution reports route
 router.get('/all', authenticateUser, getAllPollutionReports);
+
+// get location coordinates for all reports
+router.get('/reports', authenticateUser, getLocationCoordinates);
 
 // Update pollution report route (protected)
 router.put('/update/:id', authenticateUser, updatePollutionReport);
