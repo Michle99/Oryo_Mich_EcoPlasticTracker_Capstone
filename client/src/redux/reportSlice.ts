@@ -65,7 +65,6 @@ export const submitReport = createAsyncThunk(
       {
         withCredentials: true,
         headers: {
-          'Access-Control-Allow-Origin': "*",
           Authorization: `Bearer ${auth.token}`,
         }
       }
