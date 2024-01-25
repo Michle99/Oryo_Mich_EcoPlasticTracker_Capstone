@@ -86,6 +86,7 @@ const Header: React.FC = () => {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            color="primary"
           >
             <MenuItem component={Link} to="/" onClick={handleClose}>
               Home

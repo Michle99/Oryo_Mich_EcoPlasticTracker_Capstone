@@ -12,26 +12,28 @@ import Footer from './components/Footer';
 const App: React.FC = () => {
   return (
     <Router>
-      <Header />
-      <CssBaseline />
-      <Container 
-        component="main"
-        sx={{
-          padding: '1rem',
-        }}
-      >
-        
-        <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/signup" element={<Signup/>}/>
-            <Route path="/login" element={<Login />}/> 
-            <Route path="/submit" element={<ReportForm/>} />
-            <Route path="/list" element={<ReportList/>} />
-          </Routes>
-        </Paper>
-      </Container>
-      <Footer/>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Header />
+        <CssBaseline />
+        <Container 
+          component="main"
+          sx={{
+            padding: '1rem',
+            flex: 1
+          }}
+        >
+          <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/signup" element={<Signup/>}/>
+              <Route path="/login" element={<Login />}/> 
+              <Route path="/submit" element={<ReportForm/>} />
+              <Route path="/list" element={<ReportList/>} />
+            </Routes>
+          </Paper>
+        </Container>
+        <Footer/>
+      </div>
     </Router>
   );
 };
