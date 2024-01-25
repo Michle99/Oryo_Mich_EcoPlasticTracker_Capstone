@@ -8,6 +8,7 @@ import Login from './components/Login';
 import ReportForm from './components/ReportForm';
 import ReportList from './components/ReportList';
 import Footer from './components/Footer';
+import PollutionMap from './components/PollutionMap';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
               <Route path="/login" element={<Login />}/> 
               <Route path="/submit" element={<ReportForm/>} />
               <Route path="/list" element={<ReportList/>} />
+              <Route path='/map' element={<PollutionMap/>} />
             </Routes>
           </Paper>
         </Container>
