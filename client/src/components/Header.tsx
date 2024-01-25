@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Button, 
+  IconButton, 
+  Menu, 
+  MenuItem 
+} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout, selectUser } from '../redux/authSlice';
@@ -86,7 +94,9 @@ const Header: React.FC = () => {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
-            color="primary"
+            sx={{
+              accentColor: "Menu",
+            }}
           >
             <MenuItem component={Link} to="/" onClick={handleClose}>
               Home
