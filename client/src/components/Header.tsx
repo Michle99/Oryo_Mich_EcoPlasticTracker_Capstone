@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { logout, selectUser } from '../redux/authSlice';
 import { AppDispatch, useAppSelector } from '../redux/store';
 import MenuIcon from '@mui/icons-material/Menu';
-import LoginAlertModal from './modals/LoginAlertModal';
+import AlertModal from './modals/AlertModal';
 
 const Header: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -120,7 +120,7 @@ const Header: React.FC = () => {
           )}
         </Toolbar>
       </AppBar>
-      <LoginAlertModal isOpen={alertOpen} onClose={handleAlertClose} /> {/* Render the AlertModal */}
+      <AlertModal isOpen={alertOpen} onClose={handleAlertClose} /> {/* Render the AlertModal */}
     </>
   );
 };
