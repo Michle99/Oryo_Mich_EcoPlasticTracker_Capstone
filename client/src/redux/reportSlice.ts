@@ -56,6 +56,23 @@ export const fetchReports = createAsyncThunk(
     return response.data as SubmitReportPayload[];
 });
 
+export const fetchMapCoordinates = createAsyncThunk(
+  'googleMap/fetchCoordinates',
+  async (_, { getState }) => {
+    const { auth } = getState() as RootState
+    const response = await axios.get(
+      'http://localhost:3000/api/reports/locations',
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        }
+      }
+    );
+    return response.data;
+  }
+);
+
 export const submitReport = createAsyncThunk(
   'reports/submitReport', 
   async ({reportData }: { reportData: Report }, { getState }) => {

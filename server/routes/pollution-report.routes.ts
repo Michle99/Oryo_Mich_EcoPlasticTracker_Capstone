@@ -11,7 +11,7 @@ router.post('/submit', authenticateUser, submitPollutionReport);
 router.get('/all', authenticateUser, getAllPollutionReports);
 
 // get location coordinates for all reports
-router.get('/reports', authenticateUser, getLocationCoordinates);
+router.get('/locations', authenticateUser, getLocationCoordinates);
 
 // Update pollution report route (protected)
 router.put('/update/:id', authenticateUser, updatePollutionReport);
