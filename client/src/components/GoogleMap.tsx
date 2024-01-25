@@ -5,7 +5,9 @@ interface MapContainerProps {
   coordinates: [number, number];
 }
 
-const GoogleMapContainer: React.FC<MapContainerProps> = ({ coordinates }) => {
+const GoogleMapContainer: React.FC<MapContainerProps> = ({ 
+    coordinates 
+}) => {
   const mapStyles = {
     height: '400px',
     width: '100%',
