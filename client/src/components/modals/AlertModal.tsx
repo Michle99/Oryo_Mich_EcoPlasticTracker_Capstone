@@ -7,9 +7,17 @@ interface AlertModalProps {
   onClose: () => void;
 }
 
-const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose }) => {
+const AlertModal: React.FC<AlertModalProps> = ({ 
+  isOpen, 
+  onClose 
+}) => {
+
+  const handleClose = () => {
+    onClose(); 
+  };
+
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog open={isOpen} onClose={handleClose}>
       <DialogTitle>Access Denied</DialogTitle>
       <DialogContent>
         <p>
@@ -17,13 +25,23 @@ const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose }) => {
         </p>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={handleClose} color="primary">
           Close
         </Button>
-        <Button component={Link} to="/login" color="primary">
+        <Button 
+          component={Link} 
+          to="/login" 
+          color="primary" 
+          onClick={handleClose}
+        >
           Login
         </Button>
-        <Button component={Link} to="/signup" color="primary">
+        <Button 
+          component={Link} 
+          to="/signup" 
+          color="primary" 
+          onClick={handleClose}
+        >
           SignUp
         </Button>
       </DialogActions>
