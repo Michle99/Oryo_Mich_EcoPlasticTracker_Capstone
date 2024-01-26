@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReports } from "../redux/reportSlice";
+import { fetchMapCoordinates } from "../redux/reportSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { Box } from "@mui/material";
 import GoogleMapContainer from "./GoogleMap";
-
-
 
 
 const PollutionMap: React.FC = () => {
@@ -13,8 +11,8 @@ const PollutionMap: React.FC = () => {
     const reports = useSelector((state: RootState) => state.report.reports);
 
     useEffect(() => {
-        // Fetch pollution reports when the component mounts
-        dispatch(fetchReports());
+      // Fetch pollution reports when the component mounts
+      dispatch(fetchMapCoordinates());
     }, [dispatch]);
     
     return (
@@ -30,6 +28,5 @@ const PollutionMap: React.FC = () => {
     )
 
 };
-
 
 export default PollutionMap;

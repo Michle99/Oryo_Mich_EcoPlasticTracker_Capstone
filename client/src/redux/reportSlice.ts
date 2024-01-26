@@ -145,6 +145,17 @@ const reportsSlice = createSlice({
           state.status = 'failed';
           state.error = action.error.message as string;
         })
+        .addCase(fetchMapCoordinates.pending, (state) => {
+          state.status = 'loading';
+        })
+        .addCase(fetchMapCoordinates.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          state.reports = action.payload;
+        })
+        .addCase(fetchMapCoordinates.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message as string;
+        })
         .addCase(submitReport.pending, (state) => {
           state.status = 'loading';
         })

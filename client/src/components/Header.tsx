@@ -120,9 +120,18 @@ const Header: React.FC = () => {
           </Typography>
           {user ? (
             // User is authenticated, show logout button
-            <Button color="inherit" onClick={handleLogout}>
-              Logout
-            </Button>
+            <>
+              <Button color="inherit" onClick={handleLogout}>
+                Logout
+              </Button>
+              <Button 
+                color='inherit'
+                component={Link} 
+                to="/map"
+              >
+                Map
+              </Button>
+            </>
           ) : (
             // User is not authenticated, show login button
             <Button color="inherit" component={Link} to="/login">
