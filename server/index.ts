@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
-import connectDB from './db/index';
-import authRoutes from "./routes/auth.routes"
-import pollutionReportRoutes from './routes/pollution-report.routes';
+import connectDB from './db/index.ts';
+import authRoutes from "./routes/auth.routes.ts"
+import pollutionReportRoutes from './routes/pollution-report.routes.ts';
 import cors from 'cors'
 import bodyParser from 'body-parser';
 

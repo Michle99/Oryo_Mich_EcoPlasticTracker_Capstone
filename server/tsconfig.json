@@ -7,9 +7,11 @@
     "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "ts-node": {
     "esm": true,
-    "experimentalSpecifierResolution": "node"
-  }
+    "experimentalSpecifierResolution": "node",
+  },
 }

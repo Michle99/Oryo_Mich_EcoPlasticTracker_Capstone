@@ -1,6 +1,14 @@
 import express from 'express';
-import { submitPollutionReport, getAllPollutionReports, updatePollutionReport, deletePollutionReport, getLocationCoordinates } from '../controllers/pollution-report.controller';
-import { authenticateUser } from '../middlewares/auth.middleware';
+import { 
+    submitPollutionReport, 
+    getAllPollutionReports, 
+    updatePollutionReport, 
+    deletePollutionReport, 
+    getLocationCoordinates 
+} from '../controllers/pollution-report.controller.ts';
+import { 
+    authenticateUser 
+} from '../middlewares/auth.middleware.ts';
 
 const router = express.Router();
 
