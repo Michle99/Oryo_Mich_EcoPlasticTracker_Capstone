@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Pollution tracker to report Pollution incidents in nearby locations.",
   "main": "index.ts",
-  "type": "module",
   "scripts": {
     "start": "node index.ts",
     "build": "echo 'Hello ecoPlastic Tracker'"
