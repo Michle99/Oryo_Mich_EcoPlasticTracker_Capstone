@@ -19,9 +19,11 @@ const PollutionMap: React.FC = () => {
         <Box>
             {reports.map((report) => (
                 <div key={report._id}>
-                  <GoogleMapContainer 
-                    coordinates={report.location.coordinates} 
-                  />
+                    {report.location.coordinates && (
+                      <GoogleMapContainer 
+                        coordinates={report.location.coordinates} 
+                      />
+                    )}
                 </div>
             ))}
         </Box>
