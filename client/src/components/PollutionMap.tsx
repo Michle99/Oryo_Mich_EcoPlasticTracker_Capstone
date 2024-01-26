@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMapCoordinates } from "../redux/reportSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import GoogleMapContainer from "./GoogleMap";
 
 
@@ -19,10 +19,14 @@ const PollutionMap: React.FC = () => {
         <Box>
             {reports.map((report) => (
                 <div key={report._id}>
-                    {report.location.coordinates && (
+                    {report.location && report.location.coordinates && 
+                        report.location.coordinates.length > 0 ? (
                       <GoogleMapContainer 
-                        coordinates={report.location.coordinates} 
+                        key={report._id}
+                         coordinates={report.location.coordinates} 
                       />
+                    ): (
+                        <Typography key={report._id}>Cannot read properties of undefined Coordinates...</Typography>
                     )}
                 </div>
             ))}

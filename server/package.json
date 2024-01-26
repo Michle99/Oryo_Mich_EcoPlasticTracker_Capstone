@@ -4,7 +4,8 @@
   "description": "Pollution tracker to report Pollution incidents in nearby locations.",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "build": "echo 'hello ecoPlastic Tracker'"
   },
   "keywords": [
     "Pollution",
