@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
-    "build": "tsc"
+    "build": "echo 'hello ecoPlastic Tracker'"
   },
   "keywords": [
     "Pollution",
