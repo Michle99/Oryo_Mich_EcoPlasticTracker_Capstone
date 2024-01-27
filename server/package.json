@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "npm install typescript && npx tsc && ls -l dist && ls -l dist/db",
-    "start": "node dist/index.js",
+    "start": "node --es-module-specifier-resolution=node dist/index.js",
     "dev": "nodemon index.ts"
   },
   "keywords": [
