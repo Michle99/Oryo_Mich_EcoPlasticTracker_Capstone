@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import PollutionReportModel, { IPollutionReport } from '../models/pollution-report.model.ts';
+import PollutionReportModel, { IPollutionReport } from '../models/pollution-report.model';
 
 export const submitPollutionReport = async (
   req: Request, 

@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "target": "ES2016",
+    "module": "CommonJS",
     "outDir": "./dist",
     "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": false
   },
   "ts-node": {
     "esm": true,
