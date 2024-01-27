@@ -1,5 +1,5 @@
 import express from 'express';
-import connectDB from './db/index';
+import connectDB from './db/index.js';
 import authRoutes from "./routes/auth.routes";
 import pollutionReportRoutes from './routes/pollution-report.routes';
 import cors from 'cors';
