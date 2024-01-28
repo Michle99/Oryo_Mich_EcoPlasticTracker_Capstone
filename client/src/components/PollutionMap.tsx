@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMapCoordinates } from "../redux/reportSlice";
 import { AppDispatch, RootState } from "../redux/store";
@@ -8,6 +8,7 @@ import { Box } from "@mui/material";
 
 const PollutionMap: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
+    const [coordinates, setCoordinates] = useState<[number, number][]>([]);
     const reports = useSelector((state: RootState) => state.report.reports);
 
     useEffect(() => {
