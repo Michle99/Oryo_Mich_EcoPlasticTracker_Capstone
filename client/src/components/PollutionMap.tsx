@@ -5,6 +5,10 @@ import { AppDispatch, RootState } from "../redux/store";
 import { Box } from "@mui/material";
 import GoogleMapContainer from "./GoogleMap";
 
+/**
+ * TODO: Represent coordinates as data points
+ * @returns GoogleMapContainer with coordinates
+ */
 
 const PollutionMap: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -20,7 +24,7 @@ const PollutionMap: React.FC = () => {
   }, [dispatch]);
     
   console.log("Display reports from state:", reports[0]);
-  
+
   return (
     <Box>
       {coordinates.map((coordinate, index) => (
