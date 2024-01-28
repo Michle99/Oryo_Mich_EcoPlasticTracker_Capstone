@@ -13,7 +13,10 @@ const PollutionMap: React.FC = () => {
 
     useEffect(() => {
       // Fetch pollution reports when the component mounts
-      dispatch(fetchMapCoordinates());
+      dispatch(fetchMapCoordinates())
+      .then((response) => {
+        setCoordinates(response.payload || []);
+      });
     }, [dispatch]);
     
     console.log("Display reports from state:", reports[0]);
