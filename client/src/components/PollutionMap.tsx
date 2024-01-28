@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMapCoordinates } from "../redux/reportSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { Box } from "@mui/material";
-import GoogleMapContainer from "./GoogleMap";
+// import GoogleMapContainer from "./GoogleMap";
 
 
 const PollutionMap: React.FC = () => {
@@ -15,9 +15,10 @@ const PollutionMap: React.FC = () => {
       dispatch(fetchMapCoordinates());
     }, [dispatch]);
     
+    console.log("Display reports from state:", reports[0]);
     return (
         <Box>
-            {reports.map((report) => (
+            {/* {reports.map((report) => (
                 <div key={report._id}>
                     {report.location.coordinates && (
                       <GoogleMapContainer 
@@ -25,7 +26,7 @@ const PollutionMap: React.FC = () => {
                       />
                     )}
                 </div>
-            ))}
+            ))} */}
         </Box>
     )
 
