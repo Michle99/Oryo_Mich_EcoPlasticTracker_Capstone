@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMapCoordinates } from "../redux/reportSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import GoogleMapContainer from "./GoogleMap";
 
 /**
@@ -26,13 +26,13 @@ const PollutionMap: React.FC = () => {
   console.log("Display reports from state:", reports[0]);
 
   return (
-    <Box>
+    <>
       {coordinates.length > 0 ? (
         <GoogleMapContainer coordinates={coordinates} />
       ) : (
         <Typography variant="body2">No coordinates available.</Typography>
       )}
-    </Box>
+    </>
   )
 };
 
