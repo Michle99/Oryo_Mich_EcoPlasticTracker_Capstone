@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 interface MapContainerProps {
-  coordinates: [number, number];
+  coordinates: [number, number][];
 }
 
 const googleApiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
@@ -16,8 +16,8 @@ const GoogleMapContainer: React.FC<MapContainerProps> = ({
   };
 
   const defaultCenter = {
-    lat: coordinates[0],
-    lng: coordinates[1],
+    lat: coordinates.length > 0 ? coordinates[0][0] : 0,
+    lng: coordinates.length > 0 ? coordinates[0][1] : 0,
   };
 
   const { isLoaded } = useJsApiLoader({
