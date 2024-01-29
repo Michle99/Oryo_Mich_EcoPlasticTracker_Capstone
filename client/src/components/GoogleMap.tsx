@@ -30,7 +30,16 @@ const GoogleMapContainer: React.FC<MapContainerProps> = ({
         mapContainerStyle={mapStyles} 
         zoom={10} center={defaultCenter}
       >
-        <Marker position={defaultCenter} />
+        {coordinates.map((coordinate, index) => (
+          <Marker 
+            key={index}
+            position={{
+              lat: coordinate[0],
+              lng: coordinate[1]
+            }}
+          />
+        ))}
+        
       </GoogleMap>
   ): 
   <>
