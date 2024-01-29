@@ -51,13 +51,19 @@ const Signup: React.FC = () => {
         variant="outlined" 
         fullWidth 
         value={email} 
+        sx={{
+          mb: 2
+        }}
         onChange={handleEmailChange} 
       />
       <TextField 
         label="Username" 
         variant="outlined" 
         fullWidth 
-        value={username} 
+        value={username}
+        sx={{
+          mb: 2
+        }}
         onChange={handleUsernameChange} 
       />
       <TextField
