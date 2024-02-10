@@ -46,7 +46,7 @@ const ReportForm: React.FC = () => {
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<File[]>([]);
   const dispatch: AppDispatch = useDispatch();
   const [coordinates, setCoordinates] = useState<string>("");
   const navigate = useNavigate();
