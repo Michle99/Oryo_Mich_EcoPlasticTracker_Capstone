@@ -61,6 +61,7 @@ const Login: React.FC = () => {
         fullWidth
         value={password}
         onChange={handlePasswordChange}
+        sx={{ marginTop: 2 }}
       />
       <Button 
         variant="contained" 
