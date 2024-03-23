@@ -4,12 +4,13 @@ import authRoutes from "./routes/auth.routes"
 import pollutionReportRoutes from './routes/pollution-report.routes';
 import cors from 'cors'
 import bodyParser from 'body-parser';
+import { upload } from './controllers/pollution-report.controller';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: '10mb' }))
-app.use(express.urlencoded({ limit: '10mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 app.use(bodyParser.json({ limit: '10mb' }));
 
 // app.use((req, res, next) => {

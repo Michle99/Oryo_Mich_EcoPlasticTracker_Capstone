@@ -16,6 +16,9 @@ const ReportItem: React.FC<ReportItemProps> = ({ report }) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
+  //* Log report images details
+  console.log("Report images:", report.images[0])
+
   const handleNextImage = () => {
     if (Array.isArray(report.images) && report.images.length > 0) {
         setImageIndex((prevIndex) => (prevIndex + 1) % report.images.length);

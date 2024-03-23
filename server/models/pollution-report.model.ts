@@ -9,6 +9,7 @@ export interface IPollutionReport extends Document {
   description: string;
   type: string;
   images: string[];
+  user: mongoose.Types.ObjectId;
 }
 
 const pollutionReportSchema: Schema<IPollutionReport> = new Schema({
@@ -21,6 +22,7 @@ const pollutionReportSchema: Schema<IPollutionReport> = new Schema({
     coordinates: {
       type: [Number],
       required: true,
+      default: [0, 0]
     },
   },
   title: {
@@ -40,6 +42,11 @@ const pollutionReportSchema: Schema<IPollutionReport> = new Schema({
       type: String,
     },
   ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  }
 });
 
 const PollutionReportModel = mongoose.model<IPollutionReport>('PollutionReport', pollutionReportSchema);

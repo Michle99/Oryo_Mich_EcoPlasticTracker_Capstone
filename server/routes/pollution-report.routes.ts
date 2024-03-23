@@ -4,7 +4,8 @@ import {
     getAllPollutionReports, 
     updatePollutionReport, 
     deletePollutionReport, 
-    getLocationCoordinates 
+    getLocationCoordinates, 
+    upload
 } from '../controllers/pollution-report.controller';
 import { 
     authenticateUser 
@@ -13,7 +14,7 @@ import {
 const router = express.Router();
 
 // Submit pollution report route (protected)
-router.post('/submit', authenticateUser, submitPollutionReport);
+router.post('/submit', authenticateUser, upload.array('images', 5), submitPollutionReport);
 
 // Get all pollution reports route
 router.get('/all', authenticateUser, getAllPollutionReports);

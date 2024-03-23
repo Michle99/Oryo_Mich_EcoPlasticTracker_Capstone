@@ -6,7 +6,9 @@ const JWT_SECRET = process.env.JWT_SECRET_TOKEN || "default_secret_key";
 
 // Extend the Request type to include the custom userId property
 interface AuthenticatedRequest extends Request {
-  userId?: string;
+  user?: {
+   id: string;
+  }
 }
 
 export const authenticateUser = (
@@ -25,7 +27,7 @@ export const authenticateUser = (
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
-    req.userId = decoded.userId;
+    req.user = { id: decoded.userId };
     next();
   } catch (error) {
     console.error("Error authenticating user:", error);

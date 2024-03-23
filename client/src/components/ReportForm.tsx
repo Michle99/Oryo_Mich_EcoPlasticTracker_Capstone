@@ -52,13 +52,7 @@ const ReportForm: React.FC = () => {
   const navigate = useNavigate();
 
   const onDrop = (acceptedFiles: File[]) => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImages((prevImages) => [...prevImages, reader.result as string]);
-      };
-      reader.readAsDataURL(file);
-    });
+    setImages([...images, ...acceptedFiles]);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -85,7 +79,7 @@ const ReportForm: React.FC = () => {
               type,
               title,
               description,
-              images,
+              images: images.map((file) => file.name),
               _id: ""
             },
           })
@@ -148,8 +142,8 @@ const ReportForm: React.FC = () => {
         />
         {images.length > 0 && (
           <ImagesContainer>
-            {images.map((imageUrl, index) => (
-              <Image key={index} src={imageUrl} alt={`uploaded-${index}`} />
+            {images.map((file, index) => (
+              <Image key={index} src={URL.createObjectURL(file)} alt={`uploaded-${index}`} />
             ))}
           </ImagesContainer>
         )}
